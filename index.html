@@ -278,6 +278,8 @@ header {
 .vpill:hover { background: var(--pink); color: #000; transform: scale(1.12); }
 .vpill.have { background: var(--green); border-color: var(--green); color: #000; opacity: 0.65; }
 .vpill.need { border-color: var(--pink); color: var(--pink); }
+.vpill.gold { background: var(--yellow); border-color: var(--yellow); color: #000; opacity: 1; text-shadow: 0 0 6px rgba(255,230,0,0.5); }
+.prog-fill.gold { background: linear-gradient(90deg, var(--yellow), #FFB800); box-shadow: 0 0 10px rgba(255,230,0,0.6); }
 
 /* SPECIALI */
 .spec-pill {
@@ -370,18 +372,18 @@ header {
 
 /* Search results in modal */
 .mo-results {
-  display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.6rem;
-  max-height: 200px; overflow-y: auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.6rem;
+  max-height: 340px; overflow-y: auto;
 }
 .mo-result-item {
-  display: flex; gap: 0.7rem; align-items: center;
+  display: flex; flex-direction: column;
   background: #0a0a10; border: 2px solid #333;
-  padding: 0.4rem 0.6rem; cursor: pointer; transition: border-color 0.12s;
+  cursor: pointer; transition: border-color 0.12s; overflow: hidden;
 }
 .mo-result-item:hover { border-color: var(--yellow); }
-.mo-result-img { width: 36px; height: 54px; object-fit: cover; flex-shrink: 0; }
-.mo-result-info { flex: 1; }
-.mo-result-title { font-family: 'Bangers', cursive; font-size: 1.1rem; letter-spacing: 0.04em; }
+.mo-result-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+.mo-result-info { padding: 0.4rem 0.5rem; }
+.mo-result-title { font-family: 'Bangers', cursive; font-size: 1.05rem; letter-spacing: 0.04em; line-height: 1.1; }
 .mo-result-meta { font-family: 'VT323', monospace; font-size: 0.82rem; color: #666; }
 
 /* Vol editor in modal */
@@ -831,16 +833,18 @@ function buildCard(m, idx) {
   // Volumes section
   let volsHtml = '';
   if (m.volTot > 0) {
+    const allDone = haveCount === m.volTot;
     const pills = [];
     for (let i = 1; i <= m.volTot; i++) {
       const have = haveSet.has(i);
-      pills.push(`<span class="vpill ${have?'have':'need'}" onclick="toggleVolCard(${m.id},${i})" title="Vol.${i}">${i}</span>`);
+      const cls = allDone ? 'gold' : (have ? 'have' : 'need');
+      pills.push(`<span class="vpill ${cls}" onclick="toggleVolCard(${m.id},${i})" title="Vol.${i}">${i}</span>`);
     }
     volsHtml = `
-      <div class="section-lbl">VOLUMI (verde=ho, rosa=manca)</div>
+      <div class="section-lbl">${allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)'}</div>
       <div class="vol-grid">${pills.join('')}</div>
-      <div class="prog-wrap"><div class="prog-fill" id="pf-${m.id}" style="width:${pct}%"></div></div>
-      <div class="prog-lbl" id="pl-${m.id}">${haveCount}/${m.volTot} in collezione</div>
+      <div class="prog-wrap"><div class="prog-fill${allDone?' gold':''}" id="pf-${m.id}" style="width:${pct}%"></div></div>
+      <div class="prog-lbl" id="pl-${m.id}" style="${allDone?'color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.5)':''}">${allDone?'★ '+haveCount+'/'+m.volTot+' COMPLETO! ★':haveCount+'/'+m.volTot+' in collezione'}</div>
     `;
   } else if (mancanti.length > 0) {
     volsHtml = `
@@ -923,18 +927,33 @@ function toggleVolCard(id, vol) {
   m.volHo = [...set].sort((a,b)=>a-b);
   save();
 
-  // update pill
-  const pill = document.querySelector(`.card [onclick="toggleVolCard(${id},${vol})"]`);
-  if (pill) { pill.classList.toggle('have', set.has(vol)); pill.classList.toggle('need', !set.has(vol)); }
+  const allDone = m.volTot > 0 && set.size === m.volTot;
 
-  // update progress
+  // update all pills to gold/have/need
+  const card = document.querySelector(`#pf-${id}`)?.closest('.card');
+  if (card) {
+    card.querySelectorAll('.vpill').forEach((pill, idx) => {
+      const n = idx + 1;
+      pill.className = 'vpill ' + (allDone ? 'gold' : (set.has(n) ? 'have' : 'need'));
+    });
+  }
+
+  // update label
+  const lbl = card?.querySelector('.section-lbl');
+  if (lbl) lbl.textContent = allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)';
+
+  // update progress bar
   const pct = Math.round(set.size / m.volTot * 100);
   const pf = document.getElementById(`pf-${id}`);
   const pl = document.getElementById(`pl-${id}`);
-  if (pf) pf.style.width = pct + '%';
-  if (pl) pl.textContent = `${set.size}/${m.volTot} in collezione`;
+  if (pf) { pf.style.width = pct + '%'; pf.classList.toggle('gold', allDone); }
+  if (pl) {
+    pl.style.color = allDone ? 'var(--yellow)' : '';
+    pl.style.textShadow = allDone ? '0 0 6px rgba(255,230,0,0.5)' : '';
+    pl.textContent = allDone ? `★ ${set.size}/${m.volTot} COMPLETO! ★` : `${set.size}/${m.volTot} in collezione`;
+  }
 
-  toast(set.has(vol) ? `✓ Vol.${vol} aggiunto!` : `✗ Vol.${vol} rimosso`);
+  toast(allDone ? '★ MANGA COMPLETO! ★' : (set.has(vol) ? `✓ Vol.${vol} aggiunto!` : `✗ Vol.${vol} rimosso`));
   renderStats();
 }
 
@@ -1052,7 +1071,20 @@ function closeMo() { document.getElementById('mo').classList.remove('open'); }
 
 document.getElementById('mTotVol').addEventListener('input', e => {
   moVolTot = parseInt(e.target.value) || 0;
+  // Se stato è Completo, segna tutti come posseduti
+  if (document.getElementById('mStato').value === 'Completo' && moVolTot > 0) {
+    moVolHo = Array.from({length: moVolTot}, (_, i) => i + 1);
+  }
   renderVolPicker(moVolTot, moVolHo);
+});
+
+document.getElementById('mStato').addEventListener('change', e => {
+  if (e.target.value === 'Completo' && moVolTot > 0) {
+    moVolHo = Array.from({length: moVolTot}, (_, i) => i + 1);
+    renderVolPicker(moVolTot, moVolHo);
+  } else if (e.target.value === 'Incompleto') {
+    // non tocca i volumi già selezionati
+  }
 });
 
 function renderVolPicker(tot, have) {
