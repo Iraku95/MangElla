@@ -551,7 +551,72 @@ header {
 
 <div class="toast" id="toast"></div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA6PzPeMEZi5MqNUUJ2yjKHaEnfYoKZQmQ",
+  authDomain: "mangella.firebaseapp.com",
+  projectId: "mangella",
+  storageBucket: "mangella.firebasestorage.app",
+  messagingSenderId: "738784214934",
+  appId: "1:738784214934:web:0d56a15da9ef42537ba7b7"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+const COLLECTION_REF = doc(db, 'collezione', 'manga');
+
+/* ── Firebase save ── */
+async function save() {
+  try {
+    await setDoc(COLLECTION_REF, { manga: JSON.parse(JSON.stringify(manga)) });
+  } catch(e) {
+    console.error('Errore salvataggio Firebase:', e);
+    // fallback locale
+    try { localStorage.setItem('mangadb_v4_backup', JSON.stringify(manga)); } catch(_) {}
+  }
+}
+
+/* ── Firebase load + listener realtime ── */
+async function initFirebase() {
+  showLoad('CONNESSIONE AL DATABASE...');
+  try {
+    const snap = await getDoc(COLLECTION_REF);
+    if (snap.exists() && snap.data().manga?.length) {
+      manga = snap.data().manga;
+    } else {
+      // Prima volta: carica il seed e salvalo
+      manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
+      await save();
+    }
+  } catch(e) {
+    console.error('Errore caricamento Firebase:', e);
+    // Fallback a localStorage se offline
+    try {
+      const s = localStorage.getItem('mangadb_v4_backup');
+      if (s) manga = JSON.parse(s);
+      else manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
+    } catch(_) {
+      manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
+    }
+  }
+
+  hideLoad();
+  renderGrid();
+  renderStats();
+
+  // Listener realtime: aggiorna UI quando un altro dispositivo salva
+  onSnapshot(COLLECTION_REF, (snap) => {
+    if (!snap.exists()) return;
+    const remoto = snap.data().manga;
+    if (!remoto) return;
+    manga = remoto;
+    renderGrid();
+    renderStats();
+  }, (err) => console.warn('Listener offline:', err));
+}
 /* ═══════════════════════ DATA ═══════════════════════ */
 const SEED = [
   {titolo:"17 anni",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
@@ -620,19 +685,9 @@ const SEED = [
   {titolo:"HANAKO KUN Artbook",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]}
 ];
 
-/* ── storage ── */
-function load() {
-  try {
-    const s = localStorage.getItem('mangadb_v4');
-    if (s) return JSON.parse(s);
-  } catch(e){}
-  return SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
-}
-function save() {
-  try { localStorage.setItem('mangadb_v4', JSON.stringify(manga)); } catch(e){}
-}
 
-let manga = load();
+/* ── manga array (popolato da Firebase) ── */
+let manga = [];
 let filter = 'tutti';
 let query = '';
 let editId = null;
@@ -1138,9 +1193,6 @@ function showLoad(msg) {
 function hideLoad() { document.getElementById('loadOv').classList.remove('open'); }
 
 /* ── INIT ── */
-renderGrid();
-renderStats();
-
 // Add sync-all button after controls
 const ctrlDiv = document.querySelector('.controls');
 const syncAllBtn = document.createElement('button');
@@ -1150,6 +1202,25 @@ syncAllBtn.innerHTML = '⟳ SYNC ALL';
 syncAllBtn.title = 'Scarica volumi totali e copertine da AniList per tutti i manga';
 syncAllBtn.onclick = syncAll;
 ctrlDiv.appendChild(syncAllBtn);
+
+// Avvia connessione Firebase
+initFirebase();
+
+// Esponi le funzioni al contesto globale (necessario con type="module")
+window.setFilter = setFilter;
+window.openAdd = openAdd;
+window.openEdit = openEdit;
+window.closeMo = closeMo;
+window.saveMo = saveMo;
+window.delMo = delMo;
+window.doAniSearch = doAniSearch;
+window.selectAniResult = selectAniResult;
+window.toggleVolCard = toggleVolCard;
+window.toggleSpec = toggleSpec;
+window.toggleVePill = toggleVePill;
+window.syncOne = syncOne;
+window.syncAll = syncAll;
+
 </script>
 </body>
 </html>
