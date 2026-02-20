@@ -7,147 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --black: #08080f;
-  --white: #f0ede0;
-  --yellow: #FFE600;
-  --pink: #FF2D78;
-  --cyan: #00F5FF;
-  --orange: #FF6B00;
-  --blue: #1E00FF;
-  --green: #00FF88;
-  --purple: #8B00FF;
-  --red: #FF1111;
-  --panel: #111118;
-  --card: #13131a;
-  --border-dim: #2a2a3a;
+  --black: #08080f; --white: #f0ede0; --yellow: #FFE600; --pink: #FF2D78;
+  --cyan: #00F5FF; --orange: #FF6B00; --blue: #1E00FF; --green: #00FF88;
+  --purple: #8B00FF; --red: #FF1111; --panel: #111118; --card: #13131a; --border-dim: #2a2a3a;
 }
-
 html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'VT323', monospace; font-size: 18px; min-height: 100vh; overflow-x: hidden; }
+body::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px); pointer-events: none; z-index: 9999; opacity: 0.4; }
 
-body {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'VT323', monospace;
-  font-size: 18px;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-header {
-  background: var(--black);
-  border-bottom: 4px solid var(--yellow);
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.logo-main {
-  font-family: 'Bangers', cursive;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  color: var(--yellow);
-  letter-spacing: 0.08em;
-  text-shadow: 4px 4px 0 var(--pink), 7px 7px 0 var(--blue), 0 0 40px rgba(255,230,0,0.3);
-  line-height: 1;
-}
-.logo-sub {
-  font-family: 'VT323', monospace;
-  font-size: 0.9rem;
-  color: var(--cyan);
-  letter-spacing: 0.2em;
-  text-shadow: 0 0 8px var(--cyan);
-}
-
+header { background: var(--black); border-bottom: 4px solid var(--yellow); padding: 1rem 2rem; position: sticky; top: 0; z-index: 200; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.logo-main { font-family: 'Bangers', cursive; font-size: clamp(2rem,5vw,3.4rem); color: var(--yellow); letter-spacing: 0.08em; text-shadow: 4px 4px 0 var(--pink), 7px 7px 0 var(--blue), 0 0 40px rgba(255,230,0,0.3); line-height: 1; }
+.logo-sub { font-family: 'VT323', monospace; font-size: 0.9rem; color: var(--cyan); letter-spacing: 0.2em; text-shadow: 0 0 8px var(--cyan); }
+.logo-sync-info { font-family: 'VT323', monospace; font-size: 0.75rem; color: #444; letter-spacing: 0.1em; margin-top: 0.1rem; }
 .header-stats { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-left: auto; }
-.hstat {
-  background: var(--panel);
-  border: 2px solid var(--cyan);
-  padding: 0.3rem 0.7rem;
-  font-family: 'VT323', monospace;
-  font-size: 0.9rem;
-  color: var(--cyan);
-  text-shadow: 0 0 6px var(--cyan);
-  text-align: center;
-  min-width: 60px;
-  box-shadow: 0 0 8px rgba(0,245,255,0.12);
-}
+.hstat { background: var(--panel); border: 2px solid var(--cyan); padding: 0.3rem 0.7rem; font-family: 'VT323', monospace; font-size: 0.9rem; color: var(--cyan); text-shadow: 0 0 6px var(--cyan); text-align: center; min-width: 60px; box-shadow: 0 0 8px rgba(0,245,255,0.12); }
 .hstat-num { font-size: 1.6rem; line-height: 1; }
 .hstat-num.y { color: var(--yellow); text-shadow: 0 0 10px var(--yellow); }
 .hstat-num.g { color: var(--green); text-shadow: 0 0 10px var(--green); }
 .hstat-num.p { color: var(--pink); text-shadow: 0 0 10px var(--pink); }
 .hstat-num.o { color: var(--orange); text-shadow: 0 0 10px var(--orange); }
 
-.marquee-wrap {
-  background: var(--pink);
-  padding: 0.25rem 0;
-  overflow: hidden;
-  white-space: nowrap;
-  border-bottom: 3px solid var(--yellow);
-}
-.marquee-inner {
-  display: inline-block;
-  animation: marqueeAnim 40s linear infinite;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
-  color: #000;
-  letter-spacing: 0.08em;
-}
+.marquee-wrap { background: var(--pink); padding: 0.25rem 0; overflow: hidden; white-space: nowrap; border-bottom: 3px solid var(--yellow); }
+.marquee-inner { display: inline-block; animation: marqueeAnim 40s linear infinite; font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #000; letter-spacing: 0.08em; }
 @keyframes marqueeAnim { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-.controls {
-  padding: 1rem 2rem;
-  display: flex;
-  gap: 0.7rem;
-  align-items: center;
-  flex-wrap: wrap;
-  background: var(--panel);
-  border-bottom: 3px solid var(--border-dim);
-}
-
+.controls { padding: 1rem 2rem; display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; background: var(--panel); border-bottom: 3px solid var(--border-dim); }
 .search-box { position: relative; flex: 1; min-width: 180px; }
-.search-box input {
-  width: 100%;
-  background: #000;
-  border: 3px solid var(--cyan);
-  color: var(--cyan);
-  font-family: 'VT323', monospace;
-  font-size: 1.3rem;
-  padding: 0.35rem 0.7rem 0.35rem 2rem;
-  outline: none;
-  text-shadow: 0 0 6px var(--cyan);
-  box-shadow: 0 0 10px rgba(0,245,255,0.15);
-  letter-spacing: 0.04em;
-}
+.search-box input { width: 100%; background: #000; border: 3px solid var(--cyan); color: var(--cyan); font-family: 'VT323', monospace; font-size: 1.3rem; padding: 0.35rem 0.7rem 0.35rem 2rem; outline: none; text-shadow: 0 0 6px var(--cyan); box-shadow: 0 0 10px rgba(0,245,255,0.15); letter-spacing: 0.04em; }
 .search-box input::placeholder { color: #333; }
 .search-box input:focus { box-shadow: 0 0 20px rgba(0,245,255,0.4); }
 .s-icon { position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--cyan); }
-
-.rbtn {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.48rem;
-  padding: 0.55rem 0.8rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.1s;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
-}
+.sort-select { background: #000; border: 2px solid #333; color: #888; font-family: 'Press Start 2P', monospace; font-size: 0.38rem; padding: 0.5rem 0.6rem; outline: none; cursor: pointer; transition: border-color 0.1s; }
+.sort-select:hover, .sort-select:focus { border-color: var(--cyan); color: var(--cyan); }
+.rbtn { font-family: 'Press Start 2P', monospace; font-size: 0.48rem; padding: 0.55rem 0.8rem; border: none; cursor: pointer; transition: all 0.1s; line-height: 1.5; letter-spacing: 0.04em; }
 .rbtn:active { transform: translate(2px,2px); }
 .rbtn-all  { background: var(--yellow); color: #000; }
 .rbtn-all.active, .rbtn-all:hover { box-shadow: 0 0 14px rgba(255,230,0,0.7); }
@@ -160,273 +53,109 @@ header {
 .rbtn-add  { background: var(--purple); color: #fff; margin-left: auto; }
 .rbtn-add:hover { box-shadow: 0 0 14px rgba(139,0,255,0.7); }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.4rem;
-  padding: 1.5rem 2rem 3rem;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1.4rem; padding: 1.5rem 2rem 3rem; }
 
-.card {
-  background: var(--card);
-  border: 3px solid var(--border-dim);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-  animation: popIn 0.3s cubic-bezier(.34,1.56,.64,1) both;
-  position: relative;
-}
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.82) rotate(-2deg); }
-  to   { opacity: 1; transform: scale(1) rotate(0); }
-}
-.card:hover {
-  transform: translateY(-5px) rotate(0.4deg);
-  border-color: var(--yellow);
-  box-shadow: 0 6px 0 var(--yellow), 0 0 24px rgba(255,230,0,0.18);
-  z-index: 2;
-}
+.card { background: var(--card); border: 3px solid var(--border-dim); display: flex; flex-direction: column; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; animation: popIn 0.3s cubic-bezier(.34,1.56,.64,1) both; position: relative; }
+@keyframes popIn { from { opacity:0; transform:scale(0.82) rotate(-2deg); } to { opacity:1; transform:scale(1) rotate(0); } }
+.card:hover { transform: translateY(-5px) rotate(0.4deg); border-color: var(--yellow); box-shadow: 0 6px 0 var(--yellow), 0 0 24px rgba(255,230,0,0.18); z-index: 2; }
 .card.completo { border-color: #1a3a2a; }
 .card.completo:hover { border-color: var(--green); box-shadow: 0 6px 0 var(--green), 0 0 24px rgba(0,255,136,0.18); }
 
-.card-cover {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2/3;
-  overflow: hidden;
-  background: #000;
-  flex-shrink: 0;
-}
-.card-cover img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s;
-}
+.card-cover { position: relative; width: 100%; aspect-ratio: 2/3; overflow: hidden; background: #000; flex-shrink: 0; }
+.card-cover img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s; }
 .card:hover .card-cover img { transform: scale(1.06); }
-.cover-ph {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 1rem; text-align: center;
-  font-family: 'Bangers', cursive;
-  font-size: 1.3rem; letter-spacing: 0.04em; line-height: 1.2;
-  position: relative; overflow: hidden;
-  color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
-}
-.cover-ph::before {
-  content: '漫'; position: absolute;
-  font-size: 6rem; opacity: 0.07; font-family: serif;
-}
-
-.cover-loading {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,0.6); z-index: 3;
-  font-family: 'VT323', monospace; font-size: 1rem; color: var(--cyan);
-  animation: blink 1s infinite;
-}
+.cover-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; text-align:center; font-family:'Bangers',cursive; font-size:1.3rem; letter-spacing:0.04em; line-height:1.2; position:relative; overflow:hidden; color:#fff; text-shadow:2px 2px 0 rgba(0,0,0,0.5); }
+.cover-ph::before { content:'漫'; position:absolute; font-size:6rem; opacity:0.07; font-family:serif; }
+.cover-loading { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:3; font-family:'VT323',monospace; font-size:1rem; color:var(--cyan); animation:blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0.3; } }
+.badge-stato { position:absolute; top:0.4rem; right:0.4rem; font-family:'Press Start 2P',monospace; font-size:0.38rem; padding:0.25rem 0.4rem; z-index:4; line-height:1.5; }
+.bs-c { background:var(--green); color:#000; }
+.bs-i { background:var(--pink); color:#fff; }
 
-.badge-stato {
-  position: absolute; top: 0.4rem; right: 0.4rem;
-  font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
-  padding: 0.25rem 0.4rem; z-index: 4; line-height: 1.5;
-}
-.bs-c { background: var(--green); color: #000; }
-.bs-i { background: var(--pink); color: #fff; }
+.card-body { padding:0.7rem 0.8rem; flex:1; display:flex; flex-direction:column; gap:0.4rem; }
+.card-title { font-family:'Bangers',cursive; font-size:1.2rem; letter-spacing:0.04em; line-height:1.1; }
+.card-meta { font-family:'VT323',monospace; font-size:0.85rem; color:#555; }
+.section-lbl { font-family:'Press Start 2P',monospace; font-size:0.38rem; color:#555; letter-spacing:0.08em; margin-top:0.4rem; }
 
-.card-body { padding: 0.7rem 0.8rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
-.card-title { font-family: 'Bangers', cursive; font-size: 1.2rem; letter-spacing: 0.04em; line-height: 1.1; }
-.card-meta { font-family: 'VT323', monospace; font-size: 0.85rem; color: #555; }
+.vol-grid { display:flex; flex-wrap:wrap; gap:0.25rem; margin-top:0.2rem; }
+.vpill { font-family:'VT323',monospace; font-size:1rem; padding:0.05rem 0.4rem; border:2px solid var(--pink); color:var(--pink); cursor:pointer; transition:all 0.1s; user-select:none; line-height:1.2; }
+.vpill:hover { background:var(--pink); color:#000; transform:scale(1.12); }
+.vpill.have { background:var(--green); border-color:var(--green); color:#000; opacity:0.65; }
+.vpill.need { border-color:var(--pink); color:var(--pink); }
+.vpill.gold { background:var(--yellow); border-color:var(--yellow); color:#000; opacity:1; text-shadow:0 0 6px rgba(255,230,0,0.5); }
+.prog-fill.gold { background:linear-gradient(90deg,var(--yellow),#FFB800); box-shadow:0 0 10px rgba(255,230,0,0.6); }
 
-.section-lbl {
-  font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
-  color: #555; letter-spacing: 0.08em; margin-top: 0.4rem;
-}
+.spec-pill { font-family:'VT323',monospace; font-size:1rem; padding:0.05rem 0.5rem; border:2px solid var(--orange); color:var(--orange); cursor:pointer; transition:all 0.1s; user-select:none; display:inline-block; }
+.spec-pill:hover { background:var(--orange); color:#000; }
+.spec-pill.have { background:var(--green); border-color:var(--green); color:#000; opacity:0.65; text-decoration:line-through; }
 
-.vol-grid { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.2rem; }
-.vpill {
-  font-family: 'VT323', monospace; font-size: 1rem;
-  padding: 0.05rem 0.4rem;
-  border: 2px solid var(--pink); color: var(--pink);
-  cursor: pointer; transition: all 0.1s; user-select: none; line-height: 1.2;
-}
-.vpill:hover { background: var(--pink); color: #000; transform: scale(1.12); }
-.vpill.have { background: var(--green); border-color: var(--green); color: #000; opacity: 0.65; }
-.vpill.need { border-color: var(--pink); color: var(--pink); }
-.vpill.gold { background: var(--yellow); border-color: var(--yellow); color: #000; opacity: 1; text-shadow: 0 0 6px rgba(255,230,0,0.5); }
-.prog-fill.gold { background: linear-gradient(90deg, var(--yellow), #FFB800); box-shadow: 0 0 10px rgba(255,230,0,0.6); }
+.prog-wrap { height:4px; background:#222; margin-top:0.4rem; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--cyan),var(--green)); box-shadow:0 0 6px var(--cyan); transition:width 0.4s; }
+.prog-lbl { font-family:'VT323',monospace; font-size:0.8rem; color:#555; margin-top:0.1rem; }
 
-.spec-pill {
-  font-family: 'VT323', monospace; font-size: 1rem;
-  padding: 0.05rem 0.5rem;
-  border: 2px solid var(--orange); color: var(--orange);
-  cursor: pointer; transition: all 0.1s; user-select: none; display: inline-block;
-}
-.spec-pill:hover { background: var(--orange); color: #000; }
-.spec-pill.have { background: var(--green); border-color: var(--green); color: #000; opacity: 0.65; text-decoration: line-through; }
+.card-footer { padding:0.4rem 0.8rem 0.7rem; display:flex; gap:0.4rem; }
+.btn-edit-card { font-family:'Press Start 2P',monospace; font-size:0.38rem; padding:0.3rem 0.5rem; background:transparent; border:2px solid #333; color:#555; cursor:pointer; transition:all 0.1s; flex:1; text-align:center; }
+.btn-edit-card:hover { border-color:var(--cyan); color:var(--cyan); }
+.btn-sync-card { font-family:'Press Start 2P',monospace; font-size:0.38rem; padding:0.3rem 0.5rem; background:transparent; border:2px solid #333; color:#555; cursor:pointer; transition:all 0.1s; }
+.btn-sync-card:hover { border-color:var(--yellow); color:var(--yellow); }
 
-.prog-wrap { height: 4px; background: #222; margin-top: 0.4rem; }
-.prog-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--green)); box-shadow: 0 0 6px var(--cyan); transition: width 0.4s; }
-.prog-lbl { font-family: 'VT323', monospace; font-size: 0.8rem; color: #555; margin-top: 0.1rem; }
+.empty-msg { grid-column:1/-1; text-align:center; padding:5rem 2rem; font-family:'Press Start 2P',monospace; font-size:0.6rem; color:#333; line-height:3; }
 
-.card-footer { padding: 0.4rem 0.8rem 0.7rem; display: flex; gap: 0.4rem; }
-.btn-edit-card {
-  font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
-  padding: 0.3rem 0.5rem;
-  background: transparent; border: 2px solid #333; color: #555;
-  cursor: pointer; transition: all 0.1s; flex: 1; text-align: center;
-}
-.btn-edit-card:hover { border-color: var(--cyan); color: var(--cyan); }
-.btn-sync-card {
-  font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
-  padding: 0.3rem 0.5rem;
-  background: transparent; border: 2px solid #333; color: #555;
-  cursor: pointer; transition: all 0.1s;
-}
-.btn-sync-card:hover { border-color: var(--yellow); color: var(--yellow); }
+.mo { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:500; align-items:center; justify-content:center; padding:1rem; overflow-y:auto; }
+.mo.open { display:flex; }
+.mo-box { background:var(--panel); border:4px solid var(--yellow); box-shadow:8px 8px 0 var(--pink), 0 0 40px rgba(255,230,0,0.25); padding:1.8rem; width:100%; max-width:520px; position:relative; animation:moIn 0.22s cubic-bezier(.34,1.56,.64,1); max-height:90vh; overflow-y:auto; }
+@keyframes moIn { from { transform:scale(0.7) rotate(-3deg); opacity:0; } to { transform:scale(1); opacity:1; } }
+.mo h2 { font-family:'Bangers',cursive; font-size:1.9rem; color:var(--yellow); letter-spacing:0.1em; text-shadow:3px 3px 0 var(--pink); margin-bottom:1rem; }
+.mo label { font-family:'Press Start 2P',monospace; font-size:0.44rem; color:var(--cyan); display:block; margin:0.8rem 0 0.3rem; letter-spacing:0.08em; }
+.mo input, .mo select { width:100%; background:#000; border:2px solid #333; color:var(--white); font-family:'VT323',monospace; font-size:1.15rem; padding:0.35rem 0.6rem; outline:none; transition:border-color 0.15s; }
+.mo input:focus, .mo select:focus { border-color:var(--cyan); }
+.mo select option { background:#111; }
+.mo-hint { font-family:'VT323',monospace; font-size:0.85rem; color:#555; margin-top:0.2rem; }
+.mo-search-row { display:flex; gap:0.5rem; }
+.mo-search-row input { flex:1; }
+.mo-search-btn { background:var(--cyan); color:#000; font-family:'Press Start 2P',monospace; font-size:0.44rem; padding:0.4rem 0.7rem; border:none; cursor:pointer; white-space:nowrap; transition:all 0.1s; }
+.mo-search-btn:hover { box-shadow:0 0 12px rgba(0,245,255,0.5); }
+.mo-search-btn:disabled { opacity:0.4; cursor:not-allowed; }
 
-.empty-msg {
-  grid-column: 1/-1; text-align: center; padding: 5rem 2rem;
-  font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #333; line-height: 3;
-}
+.mo-results { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.6rem; max-height:340px; overflow-y:auto; }
+.mo-result-item { display:flex; flex-direction:column; background:#0a0a10; border:2px solid #333; cursor:pointer; transition:border-color 0.12s; overflow:hidden; }
+.mo-result-item:hover { border-color:var(--yellow); }
+.mo-result-img { width:100%; height:150px; object-fit:cover; display:block; }
+.mo-result-info { padding:0.4rem 0.5rem; }
+.mo-result-title { font-family:'Bangers',cursive; font-size:1.05rem; letter-spacing:0.04em; line-height:1.1; }
+.mo-result-meta { font-family:'VT323',monospace; font-size:0.82rem; color:#666; }
 
-.mo {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.88); z-index: 500;
-  align-items: center; justify-content: center; padding: 1rem;
-  overflow-y: auto;
-}
-.mo.open { display: flex; }
-.mo-box {
-  background: var(--panel);
-  border: 4px solid var(--yellow);
-  box-shadow: 8px 8px 0 var(--pink), 0 0 40px rgba(255,230,0,0.25);
-  padding: 1.8rem;
-  width: 100%; max-width: 520px;
-  position: relative;
-  animation: moIn 0.22s cubic-bezier(.34,1.56,.64,1);
-  max-height: 90vh; overflow-y: auto;
-}
-@keyframes moIn { from { transform: scale(0.7) rotate(-3deg); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.vol-editor { display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.5rem; }
+.ve-pill { font-family:'VT323',monospace; font-size:1rem; padding:0.05rem 0.4rem; border:2px solid #444; color:#666; cursor:pointer; user-select:none; transition:all 0.1s; }
+.ve-pill.have { background:var(--green); border-color:var(--green); color:#000; }
+.ve-pill:not(.have):hover { border-color:var(--cyan); color:var(--cyan); }
 
-.mo h2 {
-  font-family: 'Bangers', cursive; font-size: 1.9rem; color: var(--yellow);
-  letter-spacing: 0.1em; text-shadow: 3px 3px 0 var(--pink); margin-bottom: 1rem;
-}
-.mo label {
-  font-family: 'Press Start 2P', monospace; font-size: 0.44rem;
-  color: var(--cyan); display: block; margin: 0.8rem 0 0.3rem;
-  letter-spacing: 0.08em;
-}
-.mo input, .mo select, .mo textarea {
-  width: 100%; background: #000;
-  border: 2px solid #333; color: var(--white);
-  font-family: 'VT323', monospace; font-size: 1.15rem;
-  padding: 0.35rem 0.6rem; outline: none; transition: border-color 0.15s;
-}
-.mo input:focus, .mo select:focus, .mo textarea:focus { border-color: var(--cyan); }
-.mo select option { background: #111; }
-.mo-hint { font-family: 'VT323', monospace; font-size: 0.85rem; color: #555; margin-top: 0.2rem; }
+.mo-footer { display:flex; gap:0.7rem; margin-top:1.2rem; flex-wrap:wrap; }
+.btn-save { background:var(--yellow); color:#000; font-family:'Press Start 2P',monospace; font-size:0.48rem; padding:0.6rem 1rem; border:none; cursor:pointer; box-shadow:3px 3px 0 #9a8d00; transition:all 0.1s; }
+.btn-save:hover { box-shadow:0 0 14px rgba(255,230,0,0.5); }
+.btn-cancel { background:transparent; color:#555; font-family:'Press Start 2P',monospace; font-size:0.48rem; padding:0.6rem 0.9rem; border:2px solid #444; cursor:pointer; transition:all 0.1s; }
+.btn-cancel:hover { border-color:var(--pink); color:var(--pink); }
+.btn-del { background:transparent; color:var(--red); font-family:'Press Start 2P',monospace; font-size:0.48rem; padding:0.6rem 0.9rem; border:2px solid var(--red); cursor:pointer; margin-right:auto; transition:all 0.1s; }
+.btn-del:hover { background:var(--red); color:#fff; }
+.mo-close { position:absolute; top:0.6rem; right:0.8rem; background:none; border:none; color:#555; font-size:1.4rem; cursor:pointer; font-family:'VT323',monospace; line-height:1; }
+.mo-close:hover { color:var(--pink); }
 
-.mo-search-row { display: flex; gap: 0.5rem; }
-.mo-search-row input { flex: 1; }
-.mo-search-btn {
-  background: var(--cyan); color: #000;
-  font-family: 'Press Start 2P', monospace; font-size: 0.44rem;
-  padding: 0.4rem 0.7rem; border: none; cursor: pointer; white-space: nowrap;
-  transition: all 0.1s;
-}
-.mo-search-btn:hover { box-shadow: 0 0 12px rgba(0,245,255,0.5); }
-.mo-search-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.toast { position:fixed; bottom:1.5rem; right:1.5rem; background:var(--green); color:#000; font-family:'Press Start 2P',monospace; font-size:0.44rem; padding:0.7rem 1rem; border:3px solid #000; box-shadow:4px 4px 0 #000; z-index:1000; transform:translateY(120px); transition:transform 0.3s cubic-bezier(.34,1.56,.64,1); max-width:260px; line-height:1.8; }
+.toast.show { transform:translateY(0); }
+.toast.err { background:var(--pink); color:#fff; }
 
-.mo-results {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.6rem;
-  max-height: 340px; overflow-y: auto;
-}
-.mo-result-item {
-  display: flex; flex-direction: column;
-  background: #0a0a10; border: 2px solid #333;
-  cursor: pointer; transition: border-color 0.12s; overflow: hidden;
-}
-.mo-result-item:hover { border-color: var(--yellow); }
-.mo-result-img { width: 100%; height: 150px; object-fit: cover; display: block; }
-.mo-result-info { padding: 0.4rem 0.5rem; }
-.mo-result-title { font-family: 'Bangers', cursive; font-size: 1.05rem; letter-spacing: 0.04em; line-height: 1.1; }
-.mo-result-meta { font-family: 'VT323', monospace; font-size: 0.82rem; color: #666; }
+.loading-ov { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:800; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+.loading-ov.open { display:flex; }
+.loading-ov p { font-family:'Press Start 2P',monospace; font-size:0.6rem; color:var(--cyan); text-shadow:0 0 10px var(--cyan); animation:blink 1s infinite; text-align:center; line-height:2.5; }
 
-.vol-editor { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
-.ve-pill {
-  font-family: 'VT323', monospace; font-size: 1rem;
-  padding: 0.05rem 0.4rem; border: 2px solid #444; color: #666;
-  cursor: pointer; user-select: none; transition: all 0.1s;
-}
-.ve-pill.have { background: var(--green); border-color: var(--green); color: #000; }
-.ve-pill:not(.have):hover { border-color: var(--cyan); color: var(--cyan); }
-
-.mo-footer { display: flex; gap: 0.7rem; margin-top: 1.2rem; flex-wrap: wrap; }
-.btn-save {
-  background: var(--yellow); color: #000;
-  font-family: 'Press Start 2P', monospace; font-size: 0.48rem;
-  padding: 0.6rem 1rem; border: none; cursor: pointer;
-  box-shadow: 3px 3px 0 #9a8d00; transition: all 0.1s;
-}
-.btn-save:hover { box-shadow: 0 0 14px rgba(255,230,0,0.5); }
-.btn-save:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 #9a8d00; }
-.btn-cancel {
-  background: transparent; color: #555;
-  font-family: 'Press Start 2P', monospace; font-size: 0.48rem;
-  padding: 0.6rem 0.9rem; border: 2px solid #444; cursor: pointer; transition: all 0.1s;
-}
-.btn-cancel:hover { border-color: var(--pink); color: var(--pink); }
-.btn-del {
-  background: transparent; color: var(--red);
-  font-family: 'Press Start 2P', monospace; font-size: 0.48rem;
-  padding: 0.6rem 0.9rem; border: 2px solid var(--red); cursor: pointer;
-  margin-right: auto; transition: all 0.1s;
-}
-.btn-del:hover { background: var(--red); color: #fff; }
-.mo-close {
-  position: absolute; top: 0.6rem; right: 0.8rem;
-  background: none; border: none; color: #555; font-size: 1.4rem;
-  cursor: pointer; font-family: 'VT323', monospace; line-height: 1;
-}
-.mo-close:hover { color: var(--pink); }
-
-.toast {
-  position: fixed; bottom: 1.5rem; right: 1.5rem;
-  background: var(--green); color: #000;
-  font-family: 'Press Start 2P', monospace; font-size: 0.44rem;
-  padding: 0.7rem 1rem; border: 3px solid #000; box-shadow: 4px 4px 0 #000;
-  z-index: 1000; transform: translateY(120px); transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
-  max-width: 260px; line-height: 1.8;
-}
-.toast.show { transform: translateY(0); }
-.toast.err { background: var(--pink); color: #fff; }
-
-.loading-ov {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7); z-index: 800;
-  align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
-}
-.loading-ov.open { display: flex; }
-.loading-ov p { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: var(--cyan); text-shadow: 0 0 10px var(--cyan); animation: blink 1s infinite; text-align: center; line-height: 2.5; }
-
-.ph0{background:linear-gradient(135deg,#FF2D78,#FF6B00)}
-.ph1{background:linear-gradient(135deg,#1E00FF,#00F5FF)}
-.ph2{background:linear-gradient(135deg,#8B00FF,#FF2D78)}
-.ph3{background:linear-gradient(135deg,#FF6B00,#FFE600)}
-.ph4{background:linear-gradient(135deg,#00FF88,#1E00FF)}
-.ph5{background:linear-gradient(135deg,#FF1111,#8B00FF)}
-.ph6{background:linear-gradient(135deg,#00F5FF,#00FF88)}
-.ph7{background:linear-gradient(135deg,#FFE600,#FF2D78)}
+.ph0{background:linear-gradient(135deg,#FF2D78,#FF6B00)} .ph1{background:linear-gradient(135deg,#1E00FF,#00F5FF)}
+.ph2{background:linear-gradient(135deg,#8B00FF,#FF2D78)} .ph3{background:linear-gradient(135deg,#FF6B00,#FFE600)}
+.ph4{background:linear-gradient(135deg,#00FF88,#1E00FF)} .ph5{background:linear-gradient(135deg,#FF1111,#8B00FF)}
+.ph6{background:linear-gradient(135deg,#00F5FF,#00FF88)} .ph7{background:linear-gradient(135deg,#FFE600,#FF2D78)}
 
 @media(max-width:600px){
   .grid{padding:1rem;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(155px,1fr))}
-  header{padding:0.7rem 1rem}
-  .controls{padding:0.7rem 1rem}
-  .header-stats{display:none}
+  header{padding:0.7rem 1rem} .controls{padding:0.7rem 1rem} .header-stats{display:none}
 }
 </style>
 </head>
@@ -436,6 +165,7 @@ header {
   <div>
     <div class="logo-main">MANG<span style="color:var(--pink)">ELLA</span></div>
     <div class="logo-sub">マンガコレクション · INVENTARIO PERSONALE</div>
+    <div class="logo-sync-info" id="syncInfo"></div>
   </div>
   <div class="header-stats" id="hStats"></div>
 </header>
@@ -451,6 +181,13 @@ header {
   <button class="rbtn rbtn-comp" onclick="setFilter(this,'Completo')">✓ COMPLETI</button>
   <button class="rbtn rbtn-inc" onclick="setFilter(this,'Incompleto')">✗ INCOMPL.</button>
   <button class="rbtn rbtn-spec" onclick="setFilter(this,'speciali')">★ LIMITED</button>
+  <select class="sort-select" id="sortSelect" onchange="renderGrid()">
+    <option value="az">A → Z</option>
+    <option value="za">Z → A</option>
+    <option value="mancanti">PIÙ MANCANTI</option>
+    <option value="completati">PIÙ COMPLETATI %</option>
+    <option value="recenti">AGGIUNTI DI RECENTE</option>
+  </select>
   <button class="rbtn rbtn-add" onclick="openAdd()">＋ AGGIUNGI</button>
 </div>
 
@@ -460,47 +197,37 @@ header {
   <div class="mo-box">
     <button class="mo-close" onclick="closeMo()">✕</button>
     <h2 id="moTitle">NUOVO MANGA</h2>
-
     <label>CERCA SU ANILIST (AUTO-COMPILA)</label>
     <div class="mo-search-row">
       <input type="text" id="moSearch" placeholder="es. Demon Slayer...">
       <button class="mo-search-btn" id="moSearchBtn" onclick="doAniSearch()">🔍 CERCA</button>
     </div>
     <div class="mo-results" id="moResults"></div>
-
     <div style="border-top:2px solid #222;margin:1rem 0 0.3rem;"></div>
-
     <label>TITOLO *</label>
     <input type="text" id="mTitolo" placeholder="Titolo manga">
-
     <label>EDIZIONE</label>
     <input type="text" id="mEdizione" placeholder="es. Standard, Black Edition, Deluxe, Perfect...">
     <div class="mo-hint">Lascia vuoto se edizione unica</div>
-
     <label>STATO</label>
     <select id="mStato">
       <option value="Incompleto">INCOMPLETO (ho alcuni volumi)</option>
       <option value="Completo">COMPLETO (ho tutti i volumi)</option>
     </select>
-
-    <label>VOLUMI TOTALI DELLA SERIE (da AniList o manuale)</label>
+    <label>VOLUMI TOTALI DELLA SERIE</label>
     <input type="number" id="mTotVol" placeholder="es. 23" min="0">
     <div class="mo-hint">Se la serie è in corso lascia il numero attuale noto</div>
-
     <label>VOLUMI CHE HAI GIÀ — CLICCA PER SELEZIONARE</label>
     <div class="vol-editor" id="mVolPicker"></div>
     <div class="mo-hint" id="mVolHint">Inserisci prima il numero di volumi totali</div>
-
     <label>VOLUME LIMITED / VARIANT</label>
     <select id="mSpec">
       <option value="">NON APPLICABILE</option>
       <option value="Mancante">★ MANCANTE (non ce l'ho)</option>
       <option value="Presente">★ PRESENTE (ce l'ho)</option>
     </select>
-
     <label>COPERTINA (URL — auto da AniList)</label>
     <input type="text" id="mCover" placeholder="https://...">
-
     <div class="mo-footer" id="moFooter">
       <button class="btn-cancel" onclick="closeMo()">ANNULLA</button>
       <button class="btn-save" onclick="saveMo()">💾 SALVA</button>
@@ -508,10 +235,7 @@ header {
   </div>
 </div>
 
-<div class="loading-ov" id="loadOv">
-  <p id="loadMsg">CONNESSIONE AL DATABASE...<br>UN MOMENTO...</p>
-</div>
-
+<div class="loading-ov" id="loadOv"><p id="loadMsg">CONNESSIONE...<br>UN MOMENTO...</p></div>
 <div class="toast" id="toast"></div>
 
 <script type="module">
@@ -531,13 +255,32 @@ const fbApp = initializeApp(firebaseConfig);
 const db = getFirestore(fbApp);
 const COLLECTION_REF = doc(db, 'collezione', 'manga');
 
+let manga = [];
+let filter = 'tutti';
+let query = '';
+let editId = null;
+let modalOpen = false; // FIX #2
+let lastSyncedAt = null; // FIX #9
+
+/* ═══ FIREBASE ═══ */
 async function save() {
   try {
-    await setDoc(COLLECTION_REF, { manga: JSON.parse(JSON.stringify(manga)) });
+    await setDoc(COLLECTION_REF, { manga: JSON.parse(JSON.stringify(manga)), updatedAt: Date.now() });
+    lastSyncedAt = Date.now();
+    updateSyncInfo();
   } catch(e) {
-    console.error('Errore salvataggio Firebase:', e);
+    console.error('Errore salvataggio:', e);
     try { localStorage.setItem('mangella_backup', JSON.stringify(manga)); } catch(_) {}
+    toast('⚠ Errore salvataggio, backup locale eseguito', true);
   }
+}
+
+function updateSyncInfo() {
+  const el = document.getElementById('syncInfo');
+  if (!el || !lastSyncedAt) return;
+  const d = new Date(lastSyncedAt);
+  const p = n => String(n).padStart(2,'0');
+  el.textContent = `ULTIMO SYNC: ${p(d.getDate())}/${p(d.getMonth()+1)} ${p(d.getHours())}:${p(d.getMinutes())}`;
 }
 
 async function initFirebase() {
@@ -546,108 +289,34 @@ async function initFirebase() {
     const snap = await getDoc(COLLECTION_REF);
     if (snap.exists() && snap.data().manga?.length) {
       manga = snap.data().manga;
+      lastSyncedAt = snap.data().updatedAt || null;
+      updateSyncInfo();
     } else {
-      manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
-      await save();
+      manga = [];
+      toast('Database vuoto — aggiungi il tuo primo manga!');
     }
   } catch(e) {
-    console.error('Errore caricamento Firebase:', e);
     try {
       const s = localStorage.getItem('mangella_backup');
-      if (s) manga = JSON.parse(s);
-      else manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
-    } catch(_) {
-      manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
-    }
+      manga = s ? JSON.parse(s) : [];
+      toast('⚠ Firebase offline — backup locale caricato', true);
+    } catch(_) { manga = []; }
   }
-  hideLoad();
-  renderGrid();
-  renderStats();
+  hideLoad(); renderGrid(); renderStats();
 
-  onSnapshot(COLLECTION_REF, (snap) => {
-    if (!snap.exists()) return;
+  // FIX #2: listener non aggiorna durante modifica
+  onSnapshot(COLLECTION_REF, snap => {
+    if (!snap.exists() || modalOpen) return;
     const remoto = snap.data().manga;
     if (!remoto) return;
     manga = remoto;
-    renderGrid();
-    renderStats();
-  }, (err) => console.warn('Listener offline:', err));
+    lastSyncedAt = snap.data().updatedAt || null;
+    updateSyncInfo();
+    renderGrid(); renderStats();
+  }, err => console.warn('Listener:', err));
 }
 
-/* ═══════════════ DATA ═══════════════ */
-const SEED = [
-  {titolo:"17 anni",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"ALITA",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"ANOTHER",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"AREA D",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"AS THE GODS WILL",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"Attack on titan",stato:"Incompleto",mancanti:"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33",speciali:"Mancante",volTot:34,cover:"",volHo:[]},
-  {titolo:"BERSERK BLACK COLLECTION",edizione:"Black Edition",stato:"Incompleto",mancanti:"2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",speciali:"Mancante",volTot:50,cover:"",volHo:[1]},
-  {titolo:"BLACK JACK",stato:"Incompleto",mancanti:"1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",speciali:"Mancante",volTot:17,cover:"",volHo:[7]},
-  {titolo:"Bungo Stray Dogs",stato:"Incompleto",mancanti:"2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",speciali:"Mancante",volTot:0,cover:"",volHo:[1]},
-  {titolo:"BUONANOTTE, PUNPUN",stato:"Incompleto",mancanti:"5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",speciali:"Mancante",volTot:13,cover:"",volHo:[1,2,3,4]},
-  {titolo:"COELACANTH",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"CONDUCTOR",stato:"Incompleto",mancanti:"1",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"COTTON TALES",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"DEMI EATER Q",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"DEMON SLAYER",stato:"Incompleto",mancanti:"4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",speciali:"Mancante",volTot:23,cover:"",volHo:[1,2,3,20]},
-  {titolo:"Dragon Ball Super",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"FRIEREN",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"fullmetal alchemist",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:27,cover:"",volHo:[]},
-  {titolo:"GIRL FROM THE OTHER SIDE",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"GOOD ENDING",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
-  {titolo:"GRIMMS",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"HANAKO KUN",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"hunter x hunter",stato:"Incompleto",mancanti:"",speciali:"",volTot:37,cover:"",volHo:[]},
-  {titolo:"I FIORI DEL MALE",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"INFERNO BLU",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"INUYASHA DELUX",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"KAIJO NO.8",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LA CACCIA",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LA DIVINA COMMEDIA",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LA FINE DEL MONDO E PRIMA DELL'ALBA",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LA LUNA E IL LAGO",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LIBRONE DEMON SAYER",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LOVE STORE",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LOVEY DOVEY",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"LUPETTO ROSSO",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"MEDAKA-BOX",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"MERCEBARY PIERRE",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"MONOPHOBIA",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"Monster",stato:"Incompleto",mancanti:"",speciali:"",volTot:18,cover:"",volHo:[]},
-  {titolo:"Moriarty the Patriot",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"MY HERO ACADEMIA",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"MY HERO ACADEMIA ULTRA ANALYSIS",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"MY HERO ACADEMIA ULTRA ARCHIVE",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"NEUN",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"NINJA LIFE",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"PAPILLON",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"PLATINUM END",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"PROMISED NEVERLAND",stato:"Incompleto",mancanti:"",speciali:"",volTot:20,cover:"",volHo:[]},
-  {titolo:"PROPHECY",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"SECRET UNREQUITED LOVE",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"SHADOWS HOUSE",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"shangrl- la frontier",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"Shonen Shojo",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"SUMMER TIME RENDERING",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"TEEN BRIDE",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"THE BREAKER",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"THE SEVEN DEADLY SINS",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"THE WEDDING EVE",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"TOKKO",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"Undead Unluck",stato:"Incompleto",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"V PER VENDETTA",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"VAGABOND",stato:"Incompleto",mancanti:"",speciali:"",volTot:37,cover:"",volHo:[]},
-  {titolo:"WOLF CHILDREN",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
-  {titolo:"HANAKO KUN Artbook",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]}
-];
-
-let manga = [];
-let filter = 'tutti';
-let query = '';
-let editId = null;
-
-/* ═══════════════ ANILIST ═══════════════ */
+/* ═══ ANILIST ═══ */
 const ANILIST = 'https://graphql.anilist.co';
 
 async function aniSearchSingle(title) {
@@ -661,559 +330,431 @@ async function aniSearchSingle(title) {
     const r2 = await fetch(`https://api.jikan.moe/v4/manga?q=${encodeURIComponent(title)}&limit=6&type=manga`);
     if (r2.ok) {
       const d2 = await r2.json();
-      return (d2.data || []).map(m => ({
-        id: m.mal_id,
-        title: { romaji: m.title, english: m.title_english || m.title, native: m.title_japanese },
-        volumes: m.volumes,
-        coverImage: { large: m.images?.jpg?.large_image_url || m.images?.jpg?.image_url },
-        status: m.status
-      }));
+      return (d2.data||[]).map(m => ({ id: m.mal_id, title:{romaji:m.title,english:m.title_english||m.title,native:m.title_japanese}, volumes:m.volumes, coverImage:{large:m.images?.jpg?.large_image_url||m.images?.jpg?.image_url}, status:m.status }));
     }
   } catch(e) {}
   return [];
 }
 
 function generateVariants(raw) {
-  const t = raw.trim();
-  const variants = new Set([t]);
-  const noArticle = t.replace(/^(il|lo|la|i|gli|le|un|uno|una|l'|the|a|an)\s+/i, '');
-  if (noArticle !== t) variants.add(noArticle);
-  const clean = t.replace(/[^\w\s]/g, ' ').replace(/\s+/g, ' ').trim();
-  if (clean !== t) variants.add(clean);
-  const words = t.split(/\s+/).filter(w => w.length >= 3);
-  if (words.length >= 2) variants.add(words.slice(0,2).join(' '));
-  if (words.length >= 1 && words[0] !== t) variants.add(words[0]);
-  const noSuffix = t.replace(/\s+(delux|deluxe|black collection|ultra|special|edition|vol\.?\s*\d+)$/i, '').trim();
-  if (noSuffix !== t) variants.add(noSuffix);
-  return [...variants].slice(0, 4);
+  const t = raw.trim(); const v = new Set([t]);
+  const noArt = t.replace(/^(il|lo|la|i|gli|le|un|uno|una|l'|the|a|an)\s+/i,''); if(noArt!==t) v.add(noArt);
+  const clean = t.replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim(); if(clean!==t) v.add(clean);
+  const words = t.split(/\s+/).filter(w=>w.length>=3);
+  if(words.length>=2) v.add(words.slice(0,2).join(' '));
+  if(words.length>=1 && words[0]!==t) v.add(words[0]);
+  const noSuf = t.replace(/\s+(delux|deluxe|black collection|ultra|special|edition|vol\.?\s*\d+)$/i,'').trim(); if(noSuf!==t) v.add(noSuf);
+  return [...v].slice(0,4);
 }
 
 async function aniSearch(title) {
-  const variants = generateVariants(title);
-  const allResults = await Promise.all(variants.map(v => aniSearchSingle(v).catch(() => [])));
+  const vars = generateVariants(title);
+  const all = await Promise.all(vars.map(v => aniSearchSingle(v).catch(()=>[])));
   const seen = new Set(); const merged = [];
-  for (const batch of allResults)
-    for (const item of batch)
-      if (!seen.has(item.id)) { seen.add(item.id); merged.push(item); }
-  return merged.slice(0, 8);
+  for(const batch of all) for(const item of batch) if(!seen.has(item.id)){seen.add(item.id);merged.push(item);}
+  return merged.slice(0,8);
 }
 
+/* FIX #6: cover cache persistente per sessione */
 const coverStore = {};
-async function fetchCardCover(m) {
-  if (m.cover) return m.cover;
-  if (coverStore[m.id]) return coverStore[m.id];
-  try {
-    const results = await aniSearch(m.titolo);
-    if (results.length > 0 && results[0].coverImage?.large) {
-      const url = results[0].coverImage.large;
-      coverStore[m.id] = url;
-      return url;
+
+function applyCardCover(m) {
+  const imgEl = document.getElementById(`img-${m.id}`);
+  const phEl  = document.getElementById(`ph-${m.id}`);
+  const clEl  = document.getElementById(`cl-${m.id}`);
+  if (!imgEl) return;
+
+  const apply = url => {
+    if (clEl) clEl.remove();
+    if (url && url !== 'none') {
+      const tmp = new Image();
+      tmp.onload = () => { const i2=document.getElementById(`img-${m.id}`); const p2=document.getElementById(`ph-${m.id}`); if(i2){i2.src=url;i2.style.display='block';} if(p2) p2.style.display='none'; };
+      tmp.src = url;
     }
-  } catch(e){}
-  coverStore[m.id] = 'none';
-  return 'none';
+  };
+
+  if (m.cover) { apply(m.cover); return; }
+  const cached = coverStore[m.id];
+  if (cached === 'none') { if(clEl) clEl.remove(); return; }
+  if (cached && cached !== 'pending') { apply(cached); return; }
+  if (cached === 'pending') return; // già in fetch
+
+  coverStore[m.id] = 'pending';
+  aniSearch(m.titolo).then(results => {
+    const url = results[0]?.coverImage?.large || 'none';
+    coverStore[m.id] = url;
+    apply(url === 'none' ? null : url);
+  }).catch(() => { coverStore[m.id] = 'none'; if(clEl) clEl.remove(); });
 }
 
-/* ═══════════════ HELPERS ═══════════════ */
-
-// Dato un manga, calcola lo stato corretto in base ai volumi
+/* ═══ HELPERS ═══ */
 function calcolaStato(m) {
-  if (m.volTot > 0) {
-    return (m.volHo || []).length === m.volTot ? 'Completo' : 'Incompleto';
-  }
-  return m.stato; // senza volumi totali, fidarsi del campo manuale
+  if (m.volTot > 0) return (m.volHo||[]).length === m.volTot ? 'Completo' : 'Incompleto';
+  return m.stato || 'Incompleto';
 }
 
 function getMancanti(m) {
   if (m.volTot > 0) {
-    const haveSet = new Set((m.volHo||[]).map(Number));
-    const missing = [];
-    for (let i = 1; i <= m.volTot; i++) {
-      if (!haveSet.has(i)) missing.push(String(i));
-    }
-    return missing;
+    const s = new Set((m.volHo||[]).map(Number)); const miss = [];
+    for(let i=1;i<=m.volTot;i++) if(!s.has(i)) miss.push(String(i));
+    return miss;
   }
   if (!m.mancanti) return [];
   return m.mancanti.split(',').map(s=>s.trim()).filter(Boolean);
 }
 
-/* ═══════════════ RENDER ═══════════════ */
+/* ═══ RENDER ═══ */
+function getSorted(data) {
+  const sort = document.getElementById('sortSelect')?.value || 'az';
+  return [...data].sort((a,b) => {
+    if (sort==='az') return a.titolo.localeCompare(b.titolo);
+    if (sort==='za') return b.titolo.localeCompare(a.titolo);
+    if (sort==='mancanti') return getMancanti(b).length - getMancanti(a).length;
+    if (sort==='completati') { const pA=a.volTot>0?(a.volHo||[]).length/a.volTot:0; const pB=b.volTot>0?(b.volHo||[]).length/b.volTot:0; return pB-pA; }
+    if (sort==='recenti') return (b.id||0)-(a.id||0);
+    return 0;
+  });
+}
+
 function getFiltered() {
   let d = [...manga];
-  if (filter === 'Completo') d = d.filter(m => calcolaStato(m) === 'Completo');
-  else if (filter === 'Incompleto') d = d.filter(m => calcolaStato(m) === 'Incompleto');
-  else if (filter === 'speciali') d = d.filter(m => m.speciali === 'Mancante' && !m.specialePresente);
-  if (query) { const q = query.toLowerCase(); d = d.filter(m => m.titolo.toLowerCase().includes(q)); }
-  return d.sort((a,b) => a.titolo.localeCompare(b.titolo));
+  if (filter==='Completo') d=d.filter(m=>calcolaStato(m)==='Completo');
+  else if (filter==='Incompleto') d=d.filter(m=>calcolaStato(m)==='Incompleto');
+  else if (filter==='speciali') d=d.filter(m=>m.speciali==='Mancante'&&!m.specialePresente);
+  if (query) { const q=query.toLowerCase(); d=d.filter(m=>m.titolo.toLowerCase().includes(q)); }
+  return getSorted(d);
 }
 
 function renderStats() {
-  const tot = manga.length;
-  const comp = manga.filter(m => calcolaStato(m) === 'Completo').length;
-  const inc = manga.filter(m => calcolaStato(m) === 'Incompleto').length;
-  const specMiss = manga.filter(m => m.speciali === 'Mancante' && !m.specialePresente).length;
-  document.getElementById('hStats').innerHTML = `
+  const tot=manga.length, comp=manga.filter(m=>calcolaStato(m)==='Completo').length;
+  const inc=manga.filter(m=>calcolaStato(m)==='Incompleto').length;
+  const specMiss=manga.filter(m=>m.speciali==='Mancante'&&!m.specialePresente).length;
+  document.getElementById('hStats').innerHTML=`
     <div class="hstat"><div class="hstat-num y">${tot}</div>TITOLI</div>
     <div class="hstat"><div class="hstat-num g">${comp}</div>COMPLET</div>
     <div class="hstat"><div class="hstat-num p">${inc}</div>INCOMPL</div>
-    <div class="hstat"><div class="hstat-num o">${specMiss}</div>LIMITED</div>
-  `;
-  document.getElementById('mqText').textContent = manga.map(m => m.titolo).join(' ★ ') + ' ★ CLICCA I VOLUMI PER GESTIRE LA COLLEZIONE ★';
+    <div class="hstat"><div class="hstat-num o">${specMiss}</div>LIMITED</div>`;
+  document.getElementById('mqText').textContent = manga.map(m=>m.titolo).join(' ★ ')+' ★ CLICCA I VOLUMI PER GESTIRE LA COLLEZIONE ★';
 }
 
-function phClass(id) { return 'ph' + (id % 8); }
+function phClass(id){ return 'ph'+(id%8); }
 
 function buildCard(m, idx) {
-  const statoReale = calcolaStato(m);
-  const mancanti = getMancanti(m);
-  const haveSet = new Set((m.volHo||[]).map(Number));
-  const haveCount = m.volTot > 0 ? haveSet.size : 0;
-  const pct = m.volTot > 0 ? Math.round(haveCount / m.volTot * 100) : 0;
-  const allDone = m.volTot > 0 && haveCount === m.volTot;
+  const sr=calcolaStato(m), mancanti=getMancanti(m);
+  const haveSet=new Set((m.volHo||[]).map(Number));
+  const haveCount=m.volTot>0?haveSet.size:0;
+  const pct=m.volTot>0?Math.round(haveCount/m.volTot*100):0;
+  const allDone=m.volTot>0&&haveCount===m.volTot;
 
-  let volsHtml = '';
-  if (m.volTot > 0) {
-    const pills = [];
-    for (let i = 1; i <= m.volTot; i++) {
-      const cls = allDone ? 'gold' : (haveSet.has(i) ? 'have' : 'need');
+  let volsHtml='';
+  if(m.volTot>0){
+    const pills=[];
+    for(let i=1;i<=m.volTot;i++){
+      const cls=allDone?'gold':(haveSet.has(i)?'have':'need');
       pills.push(`<span class="vpill ${cls}" onclick="toggleVolCard(${m.id},${i})" title="Vol.${i}">${i}</span>`);
     }
-    volsHtml = `
-      <div class="section-lbl">${allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)'}</div>
+    volsHtml=`
+      <div class="section-lbl">${allDone?'★ COLLEZIONE COMPLETA ★':'VOLUMI (verde=ho, rosa=manca)'}</div>
       <div class="vol-grid">${pills.join('')}</div>
-      <div class="prog-wrap"><div class="prog-fill${allDone ? ' gold' : ''}" id="pf-${m.id}" style="width:${pct}%"></div></div>
-      <div class="prog-lbl" id="pl-${m.id}" style="${allDone ? 'color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.5)' : ''}">${allDone ? '★ ' + haveCount + '/' + m.volTot + ' COMPLETO! ★' : haveCount + '/' + m.volTot + ' in collezione'}</div>
-    `;
-  } else if (mancanti.length > 0) {
-    volsHtml = `
-      <div class="section-lbl">MANCANTI</div>
-      <div class="vol-grid">${mancanti.map(v => `<span class="vpill need">${v}</span>`).join('')}</div>
-      <div class="prog-lbl" style="color:#444">Sincronizza per i totali ↗</div>
-    `;
-  } else if (statoReale === 'Incompleto') {
-    volsHtml = `<div class="prog-lbl" style="color:#444;margin-top:0.3rem">Usa ✏ per indicare i volumi</div>`;
+      <div class="prog-wrap"><div class="prog-fill${allDone?' gold':''}" id="pf-${m.id}" style="width:${pct}%"></div></div>
+      <div class="prog-lbl" id="pl-${m.id}" style="${allDone?'color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.5)':''}">${allDone?'★ '+haveCount+'/'+m.volTot+' COMPLETO! ★':haveCount+'/'+m.volTot+' in collezione'}</div>`;
+  } else if(mancanti.length>0){
+    volsHtml=`<div class="section-lbl">MANCANTI</div><div class="vol-grid">${mancanti.map(v=>`<span class="vpill need">${v}</span>`).join('')}</div><div class="prog-lbl" style="color:#444">Sincronizza per i totali ↗</div>`;
+  } else if(sr==='Incompleto'){
+    volsHtml=`<div class="prog-lbl" style="color:#444;margin-top:0.3rem">Usa ✏ per indicare i volumi</div>`;
   }
 
-  const specHtml = m.speciali === 'Mancante' || m.speciali === 'Presente' ? `
+  const specHtml=m.speciali==='Mancante'||m.speciali==='Presente'?`
     <div class="section-lbl" style="margin-top:0.3rem">EDIZIONE LIMITED / VARIANT</div>
-    <span class="spec-pill ${m.specialePresente ? 'have' : ''}" onclick="toggleSpec(${m.id})">
-      ★ LIMITED ${m.specialePresente ? '✓ HO' : '✗ MANCA'}
-    </span>
-  ` : '';
+    <span class="spec-pill ${m.specialePresente?'have':''}" onclick="toggleSpec(${m.id})">★ LIMITED ${m.specialePresente?'✓ HO':'✗ MANCA'}</span>`:'' ;
 
   return `
-    <div class="card ${statoReale.toLowerCase()}" style="animation-delay:${Math.min(idx*0.035,0.5)}s">
+    <div class="card ${sr.toLowerCase()}" id="card-${m.id}" style="animation-delay:${Math.min(idx*0.035,0.5)}s">
       <div class="card-cover">
         <div class="cover-ph ${phClass(m.id)}" id="ph-${m.id}">${m.titolo}</div>
         <img id="img-${m.id}" src="" alt="${m.titolo}" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
         <div class="cover-loading" id="cl-${m.id}">LOAD...</div>
-        <span class="badge-stato ${statoReale === 'Completo' ? 'bs-c' : 'bs-i'}" id="badge-${m.id}">${statoReale === 'Completo' ? '✓ OK' : '✗ WIP'}</span>
+        <span class="badge-stato ${sr==='Completo'?'bs-c':'bs-i'}" id="badge-${m.id}">${sr==='Completo'?'✓ OK':'✗ WIP'}</span>
       </div>
       <div class="card-body">
         <div class="card-title">${m.titolo}</div>
-        ${m.edizione ? `<div class="card-meta" style="color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.35);letter-spacing:0.06em">★ ${m.edizione.toUpperCase()}</div>` : ''}
-        ${m.volTot > 0 ? `<div class="card-meta">${m.volTot} VOL. TOTALI</div>` : '<div class="card-meta" style="color:#333">vol. non sincronizzati</div>'}
-        ${volsHtml}
-        ${specHtml}
+        ${m.edizione?`<div class="card-meta" style="color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.35);letter-spacing:0.06em">★ ${m.edizione.toUpperCase()}</div>`:''}
+        ${m.volTot>0?`<div class="card-meta">${m.volTot} VOL. TOTALI</div>`:'<div class="card-meta" style="color:#333">vol. non sincronizzati</div>'}
+        ${volsHtml}${specHtml}
       </div>
       <div class="card-footer">
         <button class="btn-edit-card" onclick="openEdit(${m.id})">✏ MODIFICA</button>
-        <button class="btn-sync-card" title="Sincronizza con AniList" onclick="syncOne(${m.id})">⟳ SYNC</button>
+        <button class="btn-sync-card" onclick="syncOne(${m.id})">⟳ SYNC</button>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-async function renderGrid() {
+function renderGrid() {
   const data = getFiltered();
   const grid = document.getElementById('grid');
   renderStats();
-
-  if (!data.length) {
-    grid.innerHTML = `<div class="empty-msg">NESSUN RISULTATO.<br>★ ★ ★<br>PROVA UN'ALTRA RICERCA</div>`;
-    return;
-  }
-
-  grid.innerHTML = data.map((m, i) => buildCard(m, i)).join('');
-
-  data.forEach(async m => {
-    const clEl = document.getElementById(`cl-${m.id}`);
-    const imgEl = document.getElementById(`img-${m.id}`);
-    const phEl  = document.getElementById(`ph-${m.id}`);
-    if (!imgEl) return;
-    const url = await fetchCardCover(m);
-    if (clEl) clEl.remove();
-    if (url !== 'none') {
-      const tmp = new Image();
-      tmp.onload = () => {
-        if (imgEl) { imgEl.src = url; imgEl.style.display = 'block'; }
-        if (phEl)  phEl.style.display = 'none';
-      };
-      tmp.src = url;
-    }
-  });
+  if (!data.length) { grid.innerHTML=`<div class="empty-msg">NESSUN RISULTATO.<br>★ ★ ★<br>PROVA UN'ALTRA RICERCA</div>`; return; }
+  grid.innerHTML = data.map((m,i)=>buildCard(m,i)).join('');
+  data.forEach(m => applyCardCover(m)); // FIX #6: usa cache
 }
 
-/* ═══════════════ INTERACTIONS ═══════════════ */
+/* ═══ INTERACTIONS ═══ */
 function toggleVolCard(id, vol) {
-  const m = manga.find(x => x.id === id);
-  if (!m) return;
+  const m = manga.find(x=>x.id===id); if(!m) return;
   const set = new Set((m.volHo||[]).map(Number));
-  if (set.has(vol)) set.delete(vol); else set.add(vol);
-  m.volHo = [...set].sort((a,b) => a - b);
-
-  // Aggiorna stato automaticamente in base ai volumi
-  if (m.volTot > 0) {
-    m.stato = set.size === m.volTot ? 'Completo' : 'Incompleto';
-  }
-
+  if(set.has(vol)) set.delete(vol); else set.add(vol);
+  m.volHo = [...set].sort((a,b)=>a-b);
+  if(m.volTot>0) m.stato = set.size===m.volTot ? 'Completo' : 'Incompleto'; // FIX sync stato
   save();
 
-  const allDone = m.volTot > 0 && set.size === m.volTot;
-  const card = document.getElementById(`badge-${id}`)?.closest('.card');
-
-  if (card) {
-    // Aggiorna tutte le pillole
-    card.querySelectorAll('.vpill').forEach((pill, idx) => {
-      const n = idx + 1;
-      pill.className = 'vpill ' + (allDone ? 'gold' : (set.has(n) ? 'have' : 'need'));
-    });
-    // Aggiorna badge stato
-    const badge = document.getElementById(`badge-${id}`);
-    if (badge) {
-      badge.className = 'badge-stato ' + (allDone ? 'bs-c' : 'bs-i');
-      badge.textContent = allDone ? '✓ OK' : '✗ WIP';
-    }
-    // Aggiorna classe card
-    card.className = 'card ' + (allDone ? 'completo' : 'incompleto');
-    // Aggiorna label sezione
-    const lbl = card.querySelector('.section-lbl');
-    if (lbl) lbl.textContent = allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)';
+  const allDone = m.volTot>0 && set.size===m.volTot;
+  const card = document.getElementById(`card-${id}`);
+  if(card){
+    card.querySelectorAll('.vpill').forEach((pill,idx)=>{ const n=idx+1; pill.className='vpill '+(allDone?'gold':(set.has(n)?'have':'need')); });
+    const badge=document.getElementById(`badge-${id}`);
+    if(badge){ badge.className='badge-stato '+(allDone?'bs-c':'bs-i'); badge.textContent=allDone?'✓ OK':'✗ WIP'; }
+    card.className='card '+(allDone?'completo':'incompleto');
+    const lbl=card.querySelector('.section-lbl');
+    if(lbl) lbl.textContent=allDone?'★ COLLEZIONE COMPLETA ★':'VOLUMI (verde=ho, rosa=manca)';
   }
-
-  // Aggiorna barra e label progresso
-  const pct = m.volTot > 0 ? Math.round(set.size / m.volTot * 100) : 0;
-  const pf = document.getElementById(`pf-${id}`);
-  const pl = document.getElementById(`pl-${id}`);
-  if (pf) { pf.style.width = pct + '%'; pf.classList.toggle('gold', allDone); }
-  if (pl) {
-    pl.style.color = allDone ? 'var(--yellow)' : '';
-    pl.style.textShadow = allDone ? '0 0 6px rgba(255,230,0,0.5)' : '';
-    pl.textContent = allDone ? `★ ${set.size}/${m.volTot} COMPLETO! ★` : `${set.size}/${m.volTot} in collezione`;
-  }
-
-  toast(allDone ? '★ MANGA COMPLETO! ★' : (set.has(vol) ? `✓ Vol.${vol} aggiunto!` : `✗ Vol.${vol} rimosso`));
+  const pct=m.volTot>0?Math.round(set.size/m.volTot*100):0;
+  const pf=document.getElementById(`pf-${id}`), pl=document.getElementById(`pl-${id}`);
+  if(pf){pf.style.width=pct+'%'; pf.classList.toggle('gold',allDone);}
+  if(pl){pl.style.color=allDone?'var(--yellow)':''; pl.style.textShadow=allDone?'0 0 6px rgba(255,230,0,0.5)':''; pl.textContent=allDone?`★ ${set.size}/${m.volTot} COMPLETO! ★`:`${set.size}/${m.volTot} in collezione`;}
+  toast(allDone?'★ MANGA COMPLETO! ★':(set.has(vol)?`✓ Vol.${vol} aggiunto!`:`✗ Vol.${vol} rimosso`));
   renderStats();
 }
 
 function toggleSpec(id) {
-  const m = manga.find(x => x.id === id);
-  if (!m) return;
-  m.specialePresente = !m.specialePresente;
-  save();
-  const pill = document.querySelector(`.card [onclick="toggleSpec(${id})"]`);
-  if (pill) {
-    pill.classList.toggle('have', m.specialePresente);
-    pill.textContent = `★ LIMITED ${m.specialePresente ? '✓ HO' : '✗ MANCA'}`;
-  }
-  toast(m.specialePresente ? '★ Limited aggiunta!' : '★ Limited rimossa');
-  renderStats();
+  const m=manga.find(x=>x.id===id); if(!m) return;
+  m.specialePresente=!m.specialePresente; save();
+  const pill=document.querySelector(`#card-${id} .spec-pill`);
+  if(pill){pill.classList.toggle('have',m.specialePresente); pill.textContent=`★ LIMITED ${m.specialePresente?'✓ HO':'✗ MANCA'}`;}
+  toast(m.specialePresente?'★ Limited aggiunta!':'★ Limited rimossa'); renderStats();
 }
 
 async function syncOne(id) {
-  const m = manga.find(x => x.id === id);
-  if (!m) return;
+  const m=manga.find(x=>x.id===id); if(!m) return;
   showLoad(`SINCRONIZZO "${m.titolo}"...`);
   try {
-    const results = await aniSearch(m.titolo);
-    if (results.length > 0) {
-      const r = results[0];
-      if (r.volumes) m.volTot = r.volumes;
-      if (r.coverImage?.large && !m.cover) {
-        m.cover = r.coverImage.large;
-        coverStore[id] = r.coverImage.large;
-      }
-      // Ricalcola stato dopo sync
-      m.stato = calcolaStato(m);
-      save();
-      hideLoad();
-      toast(`✓ ${m.titolo} — ${m.volTot > 0 ? m.volTot + ' vol.' : 'nessun dato volumi'}`);
+    const results=await aniSearch(m.titolo);
+    if(results.length>0){
+      const r=results[0];
+      if(r.volumes) m.volTot=r.volumes; // FIX #8: aggiorna sempre
+      if(r.coverImage?.large&&!m.cover){m.cover=r.coverImage.large; coverStore[id]=r.coverImage.large;}
+      m.stato=calcolaStato(m);
+      save(); hideLoad();
+      toast(`✓ ${m.titolo} — ${m.volTot>0?m.volTot+' vol.':'nessun dato'}`);
       renderGrid();
-    } else {
-      hideLoad();
-      toast('⚠ Nessun risultato AniList', true);
-    }
-  } catch(e) {
-    hideLoad();
-    toast('⚠ Errore connessione', true);
-  }
+    } else { hideLoad(); toast('⚠ Nessun risultato AniList',true); }
+  } catch(e){ hideLoad(); toast('⚠ Errore connessione',true); }
 }
 
+/* FIX #3: conferma prima di sync all */
 async function syncAll() {
-  showLoad('SINCRONIZZAZIONE DI TUTTA LA COLLEZIONE...\nPOTREBBE RICHIEDERE 1-2 MINUTI');
-  let done = 0;
-  for (const m of manga) {
-    try {
-      const results = await aniSearch(m.titolo);
-      if (results.length > 0) {
-        const r = results[0];
-        if (r.volumes && m.volTot === 0) m.volTot = r.volumes;
-        if (r.coverImage?.large && !m.cover) m.cover = r.coverImage.large;
-        m.stato = calcolaStato(m);
+  const ok=confirm(`SYNC ALL — Aggiorna volumi e copertine per tutti i ${manga.length} manga.\n\nRichiede 1-2 minuti. Continuare?`);
+  if(!ok) return;
+  showLoad('SINCRONIZZAZIONE...\nUN MOMENTO...');
+  let done=0;
+  for(const m of manga){
+    try{
+      const results=await aniSearch(m.titolo);
+      if(results.length>0){
+        const r=results[0];
+        if(r.volumes) m.volTot=r.volumes; // FIX #8: aggiorna sempre
+        if(r.coverImage?.large&&!m.cover) m.cover=r.coverImage.large;
+        m.stato=calcolaStato(m);
       }
       done++;
-      document.getElementById('loadMsg').textContent = `SINCRONIZZAZIONE...\n${done}/${manga.length} TITOLI`;
-      await new Promise(r => setTimeout(r, 350));
-    } catch(e) {}
+      document.getElementById('loadMsg').textContent=`SINCRONIZZAZIONE...\n${done}/${manga.length} TITOLI`;
+      await new Promise(r=>setTimeout(r,350));
+    } catch(e){}
   }
-  save();
-  hideLoad();
-  toast(`✓ Sincronizzati ${done} titoli!`);
-  renderGrid();
+  save(); hideLoad(); toast(`✓ Sincronizzati ${done} titoli!`); renderGrid();
 }
 
-/* ═══════════════ MODAL ═══════════════ */
-let moVolHo = [];
-let moVolTot = 0;
+/* FIX #4: esporta backup JSON */
+function esportaBackup() {
+  const blob=new Blob([JSON.stringify(manga,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const d=new Date();
+  a.href=url; a.download=`mangella_backup_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.json`;
+  a.click(); URL.revokeObjectURL(url); toast('✓ Backup esportato!');
+}
+
+/* ═══ MODAL ═══ */
+let moVolHo=[], moVolTot=0;
 
 function openAdd() {
-  editId = null;
-  moVolHo = [];
-  moVolTot = 0;
-  document.getElementById('moTitle').textContent = 'NUOVO MANGA';
-  document.getElementById('mTitolo').value = '';
-  document.getElementById('mEdizione').value = '';
-  document.getElementById('mStato').value = 'Incompleto';
-  document.getElementById('mTotVol').value = '';
-  document.getElementById('mSpec').value = '';
-  document.getElementById('mCover').value = '';
-  document.getElementById('moSearch').value = '';
-  document.getElementById('moResults').innerHTML = '';
-  renderVolPicker(0, []);
-  document.getElementById('moFooter').innerHTML = `
-    <button class="btn-cancel" onclick="closeMo()">ANNULLA</button>
-    <button class="btn-save" onclick="saveMo()">💾 SALVA</button>`;
+  modalOpen=true; editId=null; moVolHo=[]; moVolTot=0;
+  document.getElementById('moTitle').textContent='NUOVO MANGA';
+  ['mTitolo','mEdizione','mCover','moSearch'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('mStato').value='Incompleto';
+  document.getElementById('mTotVol').value='';
+  document.getElementById('mSpec').value='';
+  document.getElementById('moResults').innerHTML='';
+  renderVolPicker(0,[]);
+  document.getElementById('moFooter').innerHTML=`<button class="btn-cancel" onclick="closeMo()">ANNULLA</button><button class="btn-save" onclick="saveMo()">💾 SALVA</button>`;
   document.getElementById('mo').classList.add('open');
 }
 
 function openEdit(id) {
-  editId = id;
-  const m = manga.find(x => x.id === id);
-  moVolHo = [...(m.volHo || [])];
-  moVolTot = m.volTot || 0;
-  document.getElementById('moTitle').textContent = 'MODIFICA';
-  document.getElementById('mTitolo').value = m.titolo;
-  document.getElementById('mEdizione').value = m.edizione || '';
-  // Mostra stato reale calcolato, non quello salvato
-  document.getElementById('mStato').value = calcolaStato(m);
-  document.getElementById('mTotVol').value = m.volTot || '';
-  document.getElementById('mSpec').value = m.speciali || '';
-  document.getElementById('mCover').value = m.cover || '';
-  document.getElementById('moSearch').value = '';
-  document.getElementById('moResults').innerHTML = '';
-  renderVolPicker(moVolTot, moVolHo);
-  document.getElementById('moFooter').innerHTML = `
-    <button class="btn-del" onclick="delMo()">🗑 ELIMINA</button>
-    <button class="btn-cancel" onclick="closeMo()">ANNULLA</button>
-    <button class="btn-save" onclick="saveMo()">💾 SALVA</button>`;
+  modalOpen=true; editId=id;
+  const m=manga.find(x=>x.id===id);
+  moVolHo=[...(m.volHo||[])]; moVolTot=m.volTot||0;
+  document.getElementById('moTitle').textContent='MODIFICA';
+  document.getElementById('mTitolo').value=m.titolo;
+  document.getElementById('mEdizione').value=m.edizione||'';
+  document.getElementById('mStato').value=calcolaStato(m); // FIX: stato reale
+  document.getElementById('mTotVol').value=m.volTot||'';
+  document.getElementById('mSpec').value=m.speciali||'';
+  document.getElementById('mCover').value=m.cover||'';
+  document.getElementById('moSearch').value='';
+  document.getElementById('moResults').innerHTML='';
+  renderVolPicker(moVolTot,moVolHo);
+  document.getElementById('moFooter').innerHTML=`<button class="btn-del" onclick="delMo()">🗑 ELIMINA</button><button class="btn-cancel" onclick="closeMo()">ANNULLA</button><button class="btn-save" onclick="saveMo()">💾 SALVA</button>`;
   document.getElementById('mo').classList.add('open');
 }
 
-function closeMo() { document.getElementById('mo').classList.remove('open'); }
+function closeMo() { modalOpen=false; document.getElementById('mo').classList.remove('open'); }
 
-document.getElementById('mTotVol').addEventListener('input', e => {
-  moVolTot = parseInt(e.target.value) || 0;
-  // Se stato è Completo, segna tutti come posseduti
-  if (document.getElementById('mStato').value === 'Completo' && moVolTot > 0) {
-    moVolHo = Array.from({length: moVolTot}, (_, i) => i + 1);
-  }
-  renderVolPicker(moVolTot, moVolHo);
+document.getElementById('mTotVol').addEventListener('input', e=>{
+  moVolTot=parseInt(e.target.value)||0;
+  if(document.getElementById('mStato').value==='Completo'&&moVolTot>0) moVolHo=Array.from({length:moVolTot},(_,i)=>i+1);
+  renderVolPicker(moVolTot,moVolHo);
+});
+document.getElementById('mStato').addEventListener('change', e=>{
+  if(e.target.value==='Completo'&&moVolTot>0){ moVolHo=Array.from({length:moVolTot},(_,i)=>i+1); renderVolPicker(moVolTot,moVolHo); }
 });
 
-document.getElementById('mStato').addEventListener('change', e => {
-  if (e.target.value === 'Completo' && moVolTot > 0) {
-    moVolHo = Array.from({length: moVolTot}, (_, i) => i + 1);
-    renderVolPicker(moVolTot, moVolHo);
-  }
-});
-
-function renderVolPicker(tot, have) {
-  const container = document.getElementById('mVolPicker');
-  const hint = document.getElementById('mVolHint');
-  if (!tot) {
-    container.innerHTML = '';
-    hint.style.display = 'block';
-    return;
-  }
-  hint.style.display = 'none';
-  const haveSet = new Set(have.map(Number));
-  let html = '';
-  for (let i = 1; i <= tot; i++) {
-    html += `<span class="ve-pill ${haveSet.has(i) ? 'have' : ''}" onclick="toggleVePill(${i})">${i}</span>`;
-  }
-  container.innerHTML = html;
+function renderVolPicker(tot,have){
+  const c=document.getElementById('mVolPicker'), h=document.getElementById('mVolHint');
+  if(!tot){c.innerHTML=''; h.style.display='block'; return;}
+  h.style.display='none';
+  const s=new Set(have.map(Number));
+  c.innerHTML=[...Array(tot)].map((_,i)=>`<span class="ve-pill ${s.has(i+1)?'have':''}" onclick="toggleVePill(${i+1})">${i+1}</span>`).join('');
 }
 
-function toggleVePill(n) {
-  const set = new Set(moVolHo.map(Number));
-  if (set.has(n)) set.delete(n); else set.add(n);
-  moVolHo = [...set].sort((a,b) => a - b);
-  const pill = document.querySelector(`.ve-pill[onclick="toggleVePill(${n})"]`);
-  if (pill) pill.classList.toggle('have', set.has(n));
+function toggleVePill(n){
+  const s=new Set(moVolHo.map(Number));
+  if(s.has(n)) s.delete(n); else s.add(n);
+  moVolHo=[...s].sort((a,b)=>a-b);
+  const pill=document.querySelector(`.ve-pill[onclick="toggleVePill(${n})"]`);
+  if(pill) pill.classList.toggle('have',s.has(n));
 }
 
-function saveMo() {
-  const titolo = document.getElementById('mTitolo').value.trim();
-  if (!titolo) { toast('⚠ Inserisci un titolo!', true); return; }
-  const edizione = document.getElementById('mEdizione').value.trim();
-  const volTot = parseInt(document.getElementById('mTotVol').value) || 0;
-  const spec = document.getElementById('mSpec').value;
-  const cover = document.getElementById('mCover').value.trim();
+function saveMo(){
+  const titolo=document.getElementById('mTitolo').value.trim();
+  if(!titolo){toast('⚠ Inserisci un titolo!',true);return;}
+  const edizione=document.getElementById('mEdizione').value.trim();
+  const volTot=parseInt(document.getElementById('mTotVol').value)||0;
+  const spec=document.getElementById('mSpec').value;
+  const cover=document.getElementById('mCover').value.trim();
 
-  const haveSet = new Set(moVolHo.map(Number));
+  // FIX: se Completo+volTot ma picker vuoto, popola tutto
+  if(document.getElementById('mStato').value==='Completo'&&volTot>0&&moVolHo.length===0)
+    moVolHo=Array.from({length:volTot},(_,i)=>i+1);
 
-  // Se Completo e volumi totali noti ma picker vuoto → segna tutti
-  if (document.getElementById('mStato').value === 'Completo' && volTot > 0 && haveSet.size === 0) {
-    moVolHo = Array.from({length: volTot}, (_, i) => i + 1);
-  }
+  // FIX: stato calcolato dai volumi, non dal dropdown
+  const stato = volTot>0 ? (moVolHo.length===volTot?'Completo':'Incompleto') : document.getElementById('mStato').value;
 
-  const mancanti = [];
-  for (let i = 1; i <= volTot; i++) if (!haveSet.has(i)) mancanti.push(String(i));
-
-  // Calcola stato reale dai volumi
-  let stato;
-  if (volTot > 0) {
-    stato = moVolHo.length === volTot ? 'Completo' : 'Incompleto';
-  } else {
-    stato = document.getElementById('mStato').value;
-  }
-
-  if (editId !== null) {
-    const m = manga.find(x => x.id === editId);
-    m.titolo = titolo; m.edizione = edizione; m.stato = stato; m.volTot = volTot;
-    m.volHo = moVolHo; m.mancanti = mancanti.join(',');
-    m.speciali = spec; m.cover = cover;
-    m.specialePresente = spec === 'Presente';
-    if (cover) coverStore[editId] = cover;
+  if(editId!==null){
+    const m=manga.find(x=>x.id===editId);
+    m.titolo=titolo; m.edizione=edizione; m.stato=stato; m.volTot=volTot;
+    m.volHo=moVolHo; m.speciali=spec; m.cover=cover;
+    m.specialePresente=spec==='Presente';
+    delete m.mancanti; // FIX #5: rimuove campo legacy ridondante
+    if(cover) coverStore[editId]=cover;
     toast('✓ Aggiornato!');
   } else {
-    const id = Date.now();
-    manga.push({ id, titolo, edizione, stato, volTot, volHo: moVolHo,
-      mancanti: mancanti.join(','), speciali: spec, cover,
-      specialePresente: spec === 'Presente' });
+    const id=Date.now();
+    // FIX #5: non salva campo mancanti
+    manga.push({id,titolo,edizione,stato,volTot,volHo:moVolHo,speciali:spec,cover,specialePresente:spec==='Presente'});
     toast('★ Aggiunto!');
   }
   save(); closeMo(); renderGrid();
 }
 
-function delMo() {
-  if (!confirm('Eliminare?')) return;
-  manga = manga.filter(x => x.id !== editId);
+function delMo(){
+  if(!confirm('Eliminare questo manga dalla collezione?')) return;
+  manga=manga.filter(x=>x.id!==editId);
   save(); closeMo(); renderGrid(); toast('🗑 Eliminato');
 }
 
-async function doAniSearch() {
-  const q = document.getElementById('moSearch').value.trim();
-  if (!q) return;
-  const btn = document.getElementById('moSearchBtn');
-  btn.disabled = true; btn.textContent = '...';
-  const cont = document.getElementById('moResults');
-  cont.innerHTML = `<div style="color:#555;font-family:'VT323',monospace;font-size:1rem;padding:0.3rem;animation:blink 1s infinite">CERCANDO...</div>`;
-  try {
-    const results = await aniSearch(q);
-    if (!results.length) { cont.innerHTML = '<div style="color:#555;font-family:VT323,monospace;padding:0.3rem">Nessun risultato — prova un titolo diverso</div>'; return; }
-    cont.innerHTML = results.map(r => {
-      const title = r.title.english || r.title.romaji;
-      const vols = r.volumes ? r.volumes + ' vol.' : 'in corso';
-      const img = r.coverImage?.large || '';
+async function doAniSearch(){
+  const q=document.getElementById('moSearch').value.trim(); if(!q) return;
+  const btn=document.getElementById('moSearchBtn'); btn.disabled=true; btn.textContent='...';
+  const cont=document.getElementById('moResults');
+  cont.innerHTML=`<div style="color:#555;font-family:'VT323',monospace;font-size:1rem;padding:0.3rem;animation:blink 1s infinite">CERCANDO...</div>`;
+  try{
+    const results=await aniSearch(q);
+    if(!results.length){cont.innerHTML='<div style="color:#555;font-family:VT323,monospace;padding:0.3rem">Nessun risultato — prova diversamente</div>';return;}
+    cont.innerHTML=results.map(r=>{
+      const title=r.title.english||r.title.romaji;
+      const vols=r.volumes?r.volumes+' vol.':'in corso';
+      const img=r.coverImage?.large||'';
       return `<div class="mo-result-item" onclick="selectAniResult(${r.id},'${encodeURIComponent(title)}','${encodeURIComponent(img)}',${r.volumes||0})">
-        ${img ? `<img class="mo-result-img" src="${img}" onerror="this.style.display='none'">` : ''}
-        <div class="mo-result-info">
-          <div class="mo-result-title">${title}</div>
-          <div class="mo-result-meta">${vols} · ${r.status||''}</div>
-        </div>
+        ${img?`<img class="mo-result-img" src="${img}" onerror="this.style.display='none'">`:''}
+        <div class="mo-result-info"><div class="mo-result-title">${title}</div><div class="mo-result-meta">${vols} · ${r.status||''}</div></div>
       </div>`;
     }).join('');
-  } catch(e) {
-    cont.innerHTML = '<div style="color:#555;font-family:VT323,monospace;padding:0.3rem">⚠ Errore connessione</div>';
-    toast('⚠ Errore AniList', true);
-  }
-  btn.disabled = false; btn.textContent = '🔍 CERCA';
+  } catch(e){cont.innerHTML='<div style="color:#555;font-family:VT323,monospace;padding:0.3rem">⚠ Errore connessione</div>'; toast('⚠ Errore AniList',true);}
+  btn.disabled=false; btn.textContent='🔍 CERCA';
 }
 
-function selectAniResult(aniId, encTitle, encImg, vols) {
-  const title = decodeURIComponent(encTitle);
-  const img = decodeURIComponent(encImg);
-  document.getElementById('mTitolo').value = title;
-  if (vols) {
-    document.getElementById('mTotVol').value = vols;
-    moVolTot = vols;
-    if (document.getElementById('mStato').value === 'Completo') {
-      moVolHo = Array.from({length: vols}, (_, i) => i + 1);
-    }
-    renderVolPicker(vols, moVolHo);
+function selectAniResult(aniId,encTitle,encImg,vols){
+  const title=decodeURIComponent(encTitle), img=decodeURIComponent(encImg);
+  document.getElementById('mTitolo').value=title;
+  if(vols){
+    document.getElementById('mTotVol').value=vols; moVolTot=vols;
+    if(document.getElementById('mStato').value==='Completo') moVolHo=Array.from({length:vols},(_,i)=>i+1);
+    renderVolPicker(vols,moVolHo);
   }
-  if (img) document.getElementById('mCover').value = img;
-  document.getElementById('moResults').innerHTML = `<div style="color:var(--green);font-family:VT323,monospace;font-size:1rem;padding:0.3rem">✓ Selezionato: ${title}</div>`;
+  if(img) document.getElementById('mCover').value=img;
+  document.getElementById('moResults').innerHTML=`<div style="color:var(--green);font-family:VT323,monospace;font-size:1rem;padding:0.3rem">✓ Selezionato: ${title}</div>`;
 }
 
-let _sTimer = null;
-document.getElementById('moSearch').addEventListener('input', e => {
-  clearTimeout(_sTimer);
-  const val = e.target.value.trim();
-  if (val.length < 2) { document.getElementById('moResults').innerHTML = ''; return; }
-  document.getElementById('moResults').innerHTML = `<div style="color:#555;font-family:'VT323',monospace;font-size:1rem;padding:0.3rem;animation:blink 1s infinite">CERCANDO...</div>`;
-  _sTimer = setTimeout(() => doAniSearch(), 500);
+let _sTimer=null;
+document.getElementById('moSearch').addEventListener('input',e=>{
+  clearTimeout(_sTimer); const val=e.target.value.trim();
+  if(val.length<2){document.getElementById('moResults').innerHTML='';return;}
+  document.getElementById('moResults').innerHTML=`<div style="color:#555;font-family:'VT323',monospace;font-size:1rem;padding:0.3rem;animation:blink 1s infinite">CERCANDO...</div>`;
+  _sTimer=setTimeout(()=>doAniSearch(),500);
 });
-document.getElementById('moSearch').addEventListener('keydown', e => { if (e.key === 'Enter') { clearTimeout(_sTimer); doAniSearch(); } });
-document.getElementById('mo').addEventListener('click', e => { if (e.target === document.getElementById('mo')) closeMo(); });
+document.getElementById('moSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(_sTimer);doAniSearch();}});
+document.getElementById('mo').addEventListener('click',e=>{if(e.target===document.getElementById('mo')) closeMo();});
 
-function setFilter(btn, f) {
-  filter = f;
-  document.querySelectorAll('.rbtn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderGrid();
-}
-document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value; renderGrid(); });
+function setFilter(btn,f){ filter=f; document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderGrid(); }
+document.getElementById('searchInput').addEventListener('input',e=>{query=e.target.value; renderGrid();});
 
 let tTimer;
-function toast(msg, err = false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast' + (err ? ' err' : '') + ' show';
-  clearTimeout(tTimer); tTimer = setTimeout(() => t.classList.remove('show'), 2200);
-}
+function toast(msg,err=false){ const t=document.getElementById('toast'); t.textContent=msg; t.className='toast'+(err?' err':'')+' show'; clearTimeout(tTimer); tTimer=setTimeout(()=>t.classList.remove('show'),2500); }
+function showLoad(msg){ document.getElementById('loadMsg').innerHTML=msg.replace(/\n/g,'<br>'); document.getElementById('loadOv').classList.add('open'); }
+function hideLoad(){ document.getElementById('loadOv').classList.remove('open'); }
 
-function showLoad(msg) {
-  document.getElementById('loadMsg').innerHTML = msg.replace(/\n/g, '<br>');
-  document.getElementById('loadOv').classList.add('open');
-}
-function hideLoad() { document.getElementById('loadOv').classList.remove('open'); }
+/* ═══ INIT ═══ */
+const ctrlDiv=document.querySelector('.controls');
 
-/* ═══════════════ INIT ═══════════════ */
-const ctrlDiv = document.querySelector('.controls');
-const syncAllBtn = document.createElement('button');
-syncAllBtn.className = 'rbtn';
-syncAllBtn.style.cssText = 'background:var(--cyan);color:#000;margin-left:0';
-syncAllBtn.innerHTML = '⟳ SYNC ALL';
-syncAllBtn.title = 'Scarica volumi totali e copertine da AniList per tutti i manga';
-syncAllBtn.onclick = syncAll;
+const syncAllBtn=document.createElement('button');
+syncAllBtn.className='rbtn'; syncAllBtn.style.cssText='background:var(--cyan);color:#000';
+syncAllBtn.innerHTML='⟳ SYNC ALL'; syncAllBtn.onclick=syncAll;
 ctrlDiv.appendChild(syncAllBtn);
+
+// FIX #4: bottone backup
+const backupBtn=document.createElement('button');
+backupBtn.className='rbtn'; backupBtn.style.cssText='background:#1a1a2a;color:#888;border:2px solid #333';
+backupBtn.innerHTML='💾 BACKUP'; backupBtn.title='Esporta backup JSON'; backupBtn.onclick=esportaBackup;
+ctrlDiv.appendChild(backupBtn);
 
 initFirebase();
 
-window.setFilter = setFilter;
-window.openAdd = openAdd;
-window.openEdit = openEdit;
-window.closeMo = closeMo;
-window.saveMo = saveMo;
-window.delMo = delMo;
-window.doAniSearch = doAniSearch;
-window.selectAniResult = selectAniResult;
-window.toggleVolCard = toggleVolCard;
-window.toggleSpec = toggleSpec;
-window.toggleVePill = toggleVePill;
-window.syncOne = syncOne;
-window.syncAll = syncAll;
+window.setFilter=setFilter; window.openAdd=openAdd; window.openEdit=openEdit;
+window.closeMo=closeMo; window.saveMo=saveMo; window.delMo=delMo;
+window.doAniSearch=doAniSearch; window.selectAniResult=selectAniResult;
+window.toggleVolCard=toggleVolCard; window.toggleSpec=toggleSpec;
+window.toggleVePill=toggleVePill; window.syncOne=syncOne;
+window.syncAll=syncAll; window.esportaBackup=esportaBackup;
 </script>
 </body>
 </html>
