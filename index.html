@@ -45,7 +45,6 @@ body::after {
   opacity: 0.4;
 }
 
-/* ── HEADER ── */
 header {
   background: var(--black);
   border-bottom: 4px solid var(--yellow);
@@ -75,12 +74,7 @@ header {
   text-shadow: 0 0 8px var(--cyan);
 }
 
-.header-stats {
-  display: flex;
-  gap: 0.7rem;
-  flex-wrap: wrap;
-  margin-left: auto;
-}
+.header-stats { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-left: auto; }
 .hstat {
   background: var(--panel);
   border: 2px solid var(--cyan);
@@ -99,7 +93,6 @@ header {
 .hstat-num.p { color: var(--pink); text-shadow: 0 0 10px var(--pink); }
 .hstat-num.o { color: var(--orange); text-shadow: 0 0 10px var(--orange); }
 
-/* ── MARQUEE ── */
 .marquee-wrap {
   background: var(--pink);
   padding: 0.25rem 0;
@@ -117,7 +110,6 @@ header {
 }
 @keyframes marqueeAnim { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-/* ── CONTROLS ── */
 .controls {
   padding: 1rem 2rem;
   display: flex;
@@ -168,7 +160,6 @@ header {
 .rbtn-add  { background: var(--purple); color: #fff; margin-left: auto; }
 .rbtn-add:hover { box-shadow: 0 0 14px rgba(139,0,255,0.7); }
 
-/* ── GRID ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -176,7 +167,6 @@ header {
   padding: 1.5rem 2rem 3rem;
 }
 
-/* ── CARD ── */
 .card {
   background: var(--card);
   border: 3px solid var(--border-dim);
@@ -199,7 +189,6 @@ header {
 .card.completo { border-color: #1a3a2a; }
 .card.completo:hover { border-color: var(--green); box-shadow: 0 6px 0 var(--green), 0 0 24px rgba(0,255,136,0.18); }
 
-/* COVER */
 .card-cover {
   position: relative;
   width: 100%;
@@ -230,7 +219,6 @@ header {
   font-size: 6rem; opacity: 0.07; font-family: serif;
 }
 
-/* loading spinner on cover */
 .cover-loading {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
@@ -248,16 +236,6 @@ header {
 .bs-c { background: var(--green); color: #000; }
 .bs-i { background: var(--pink); color: #fff; }
 
-/* SYNC indicator */
-.sync-badge {
-  position: absolute; top: 0.4rem; left: 0.4rem;
-  font-family: 'Press Start 2P', monospace; font-size: 0.33rem;
-  padding: 0.2rem 0.35rem; z-index: 4;
-  background: var(--cyan); color: #000;
-  animation: blink 1.5s infinite;
-}
-
-/* BODY */
 .card-body { padding: 0.7rem 0.8rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
 .card-title { font-family: 'Bangers', cursive; font-size: 1.2rem; letter-spacing: 0.04em; line-height: 1.1; }
 .card-meta { font-family: 'VT323', monospace; font-size: 0.85rem; color: #555; }
@@ -267,7 +245,6 @@ header {
   color: #555; letter-spacing: 0.08em; margin-top: 0.4rem;
 }
 
-/* VOL GRID */
 .vol-grid { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.2rem; }
 .vpill {
   font-family: 'VT323', monospace; font-size: 1rem;
@@ -281,7 +258,6 @@ header {
 .vpill.gold { background: var(--yellow); border-color: var(--yellow); color: #000; opacity: 1; text-shadow: 0 0 6px rgba(255,230,0,0.5); }
 .prog-fill.gold { background: linear-gradient(90deg, var(--yellow), #FFB800); box-shadow: 0 0 10px rgba(255,230,0,0.6); }
 
-/* SPECIALI */
 .spec-pill {
   font-family: 'VT323', monospace; font-size: 1rem;
   padding: 0.05rem 0.5rem;
@@ -291,12 +267,10 @@ header {
 .spec-pill:hover { background: var(--orange); color: #000; }
 .spec-pill.have { background: var(--green); border-color: var(--green); color: #000; opacity: 0.65; text-decoration: line-through; }
 
-/* PROGRESS */
 .prog-wrap { height: 4px; background: #222; margin-top: 0.4rem; }
 .prog-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--green)); box-shadow: 0 0 6px var(--cyan); transition: width 0.4s; }
 .prog-lbl { font-family: 'VT323', monospace; font-size: 0.8rem; color: #555; margin-top: 0.1rem; }
 
-/* FOOTER */
 .card-footer { padding: 0.4rem 0.8rem 0.7rem; display: flex; gap: 0.4rem; }
 .btn-edit-card {
   font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
@@ -313,13 +287,11 @@ header {
 }
 .btn-sync-card:hover { border-color: var(--yellow); color: var(--yellow); }
 
-/* ── EMPTY ── */
 .empty-msg {
   grid-column: 1/-1; text-align: center; padding: 5rem 2rem;
   font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #333; line-height: 3;
 }
 
-/* ── MODAL ── */
 .mo {
   display: none; position: fixed; inset: 0;
   background: rgba(0,0,0,0.88); z-index: 500;
@@ -358,7 +330,6 @@ header {
 .mo select option { background: #111; }
 .mo-hint { font-family: 'VT323', monospace; font-size: 0.85rem; color: #555; margin-top: 0.2rem; }
 
-/* Search in modal */
 .mo-search-row { display: flex; gap: 0.5rem; }
 .mo-search-row input { flex: 1; }
 .mo-search-btn {
@@ -370,7 +341,6 @@ header {
 .mo-search-btn:hover { box-shadow: 0 0 12px rgba(0,245,255,0.5); }
 .mo-search-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* Search results in modal */
 .mo-results {
   display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.6rem;
   max-height: 340px; overflow-y: auto;
@@ -386,7 +356,6 @@ header {
 .mo-result-title { font-family: 'Bangers', cursive; font-size: 1.05rem; letter-spacing: 0.04em; line-height: 1.1; }
 .mo-result-meta { font-family: 'VT323', monospace; font-size: 0.82rem; color: #666; }
 
-/* Vol editor in modal */
 .vol-editor { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
 .ve-pill {
   font-family: 'VT323', monospace; font-size: 1rem;
@@ -425,7 +394,6 @@ header {
 }
 .mo-close:hover { color: var(--pink); }
 
-/* ── TOAST ── */
 .toast {
   position: fixed; bottom: 1.5rem; right: 1.5rem;
   background: var(--green); color: #000;
@@ -437,7 +405,6 @@ header {
 .toast.show { transform: translateY(0); }
 .toast.err { background: var(--pink); color: #fff; }
 
-/* LOADING OVERLAY */
 .loading-ov {
   display: none; position: fixed; inset: 0;
   background: rgba(0,0,0,0.7); z-index: 800;
@@ -446,7 +413,6 @@ header {
 .loading-ov.open { display: flex; }
 .loading-ov p { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: var(--cyan); text-shadow: 0 0 10px var(--cyan); animation: blink 1s infinite; text-align: center; line-height: 2.5; }
 
-/* placeholder colors */
 .ph0{background:linear-gradient(135deg,#FF2D78,#FF6B00)}
 .ph1{background:linear-gradient(135deg,#1E00FF,#00F5FF)}
 .ph2{background:linear-gradient(135deg,#8B00FF,#FF2D78)}
@@ -490,13 +456,11 @@ header {
 
 <div class="grid" id="grid"></div>
 
-<!-- ── MODAL ADD/EDIT ── -->
 <div class="mo" id="mo">
   <div class="mo-box">
     <button class="mo-close" onclick="closeMo()">✕</button>
     <h2 id="moTitle">NUOVO MANGA</h2>
 
-    <!-- SEARCH ANILIST -->
     <label>CERCA SU ANILIST (AUTO-COMPILA)</label>
     <div class="mo-search-row">
       <input type="text" id="moSearch" placeholder="es. Demon Slayer...">
@@ -519,12 +483,10 @@ header {
       <option value="Completo">COMPLETO (ho tutti i volumi)</option>
     </select>
 
-    <!-- vol total from anilist -->
     <label>VOLUMI TOTALI DELLA SERIE (da AniList o manuale)</label>
     <input type="number" id="mTotVol" placeholder="es. 23" min="0">
     <div class="mo-hint">Se la serie è in corso lascia il numero attuale noto</div>
 
-    <!-- vol picker -->
     <label>VOLUMI CHE HAI GIÀ — CLICCA PER SELEZIONARE</label>
     <div class="vol-editor" id="mVolPicker"></div>
     <div class="mo-hint" id="mVolHint">Inserisci prima il numero di volumi totali</div>
@@ -546,9 +508,8 @@ header {
   </div>
 </div>
 
-<!-- Loading -->
 <div class="loading-ov" id="loadOv">
-  <p id="loadMsg">SINCRONIZZAZIONE CON ANILIST...<br>UN MOMENTO...</p>
+  <p id="loadMsg">CONNESSIONE AL DATABASE...<br>UN MOMENTO...</p>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -570,18 +531,15 @@ const fbApp = initializeApp(firebaseConfig);
 const db = getFirestore(fbApp);
 const COLLECTION_REF = doc(db, 'collezione', 'manga');
 
-/* ── Firebase save ── */
 async function save() {
   try {
     await setDoc(COLLECTION_REF, { manga: JSON.parse(JSON.stringify(manga)) });
   } catch(e) {
     console.error('Errore salvataggio Firebase:', e);
-    // fallback locale
-    try { localStorage.setItem('mangadb_v4_backup', JSON.stringify(manga)); } catch(_) {}
+    try { localStorage.setItem('mangella_backup', JSON.stringify(manga)); } catch(_) {}
   }
 }
 
-/* ── Firebase load + listener realtime ── */
 async function initFirebase() {
   showLoad('CONNESSIONE AL DATABASE...');
   try {
@@ -589,27 +547,23 @@ async function initFirebase() {
     if (snap.exists() && snap.data().manga?.length) {
       manga = snap.data().manga;
     } else {
-      // Prima volta: carica il seed e salvalo
       manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
       await save();
     }
   } catch(e) {
     console.error('Errore caricamento Firebase:', e);
-    // Fallback a localStorage se offline
     try {
-      const s = localStorage.getItem('mangadb_v4_backup');
+      const s = localStorage.getItem('mangella_backup');
       if (s) manga = JSON.parse(s);
       else manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
     } catch(_) {
       manga = SEED.map((m,i) => ({...m, id:i, specialePresente: m.speciali==='Presente'}));
     }
   }
-
   hideLoad();
   renderGrid();
   renderStats();
 
-  // Listener realtime: aggiorna UI quando un altro dispositivo salva
   onSnapshot(COLLECTION_REF, (snap) => {
     if (!snap.exists()) return;
     const remoto = snap.data().manga;
@@ -619,7 +573,8 @@ async function initFirebase() {
     renderStats();
   }, (err) => console.warn('Listener offline:', err));
 }
-/* ═══════════════════════ DATA ═══════════════════════ */
+
+/* ═══════════════ DATA ═══════════════ */
 const SEED = [
   {titolo:"17 anni",stato:"Incompleto",mancanti:"",speciali:"Mancante",volTot:0,cover:"",volHo:[]},
   {titolo:"ALITA",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]},
@@ -687,25 +642,21 @@ const SEED = [
   {titolo:"HANAKO KUN Artbook",stato:"Completo",mancanti:"",speciali:"",volTot:0,cover:"",volHo:[]}
 ];
 
-
-/* ── manga array (popolato da Firebase) ── */
 let manga = [];
 let filter = 'tutti';
 let query = '';
 let editId = null;
 
-/* ═══════════════════════ ANILIST API ═══════════════════════ */
+/* ═══════════════ ANILIST ═══════════════ */
 const ANILIST = 'https://graphql.anilist.co';
 
 async function aniSearchSingle(title) {
   const gqlQuery = `query($s:String){Page(perPage:6){media(search:$s,type:MANGA,format_in:[MANGA,ONE_SHOT]){id title{romaji english native}volumes coverImage{large}status}}}`;
   const body = JSON.stringify({query: gqlQuery, variables: {s: title}});
-  // Tentativo diretto
   try {
     const r = await fetch(ANILIST, {method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body});
     if (r.ok) { const d = await r.json(); return d.data?.Page?.media || []; }
   } catch(e) {}
-  // Fallback: Jikan/MyAnimeList (nessun CORS issue)
   try {
     const r2 = await fetch(`https://api.jikan.moe/v4/manga?q=${encodeURIComponent(title)}&limit=6&type=manga`);
     if (r2.ok) {
@@ -725,17 +676,13 @@ async function aniSearchSingle(title) {
 function generateVariants(raw) {
   const t = raw.trim();
   const variants = new Set([t]);
-  // Rimuovi articoli italiani/inglesi in testa
   const noArticle = t.replace(/^(il|lo|la|i|gli|le|un|uno|una|l'|the|a|an)\s+/i, '');
   if (noArticle !== t) variants.add(noArticle);
-  // Rimuovi punteggiatura speciale
   const clean = t.replace(/[^\w\s]/g, ' ').replace(/\s+/g, ' ').trim();
   if (clean !== t) variants.add(clean);
-  // Prime due parole significative (≥3 char)
   const words = t.split(/\s+/).filter(w => w.length >= 3);
   if (words.length >= 2) variants.add(words.slice(0,2).join(' '));
   if (words.length >= 1 && words[0] !== t) variants.add(words[0]);
-  // Rimuovi suffissi editoriali comuni
   const noSuffix = t.replace(/\s+(delux|deluxe|black collection|ultra|special|edition|vol\.?\s*\d+)$/i, '').trim();
   if (noSuffix !== t) variants.add(noSuffix);
   return [...variants].slice(0, 4);
@@ -751,16 +698,7 @@ async function aniSearch(title) {
   return merged.slice(0, 8);
 }
 
-async function aniById(id) {
-  const q = `query($id:Int){Media(id:$id,type:MANGA){id title{romaji english}volumes coverImage{large extraLarge}status}}`;
-  const r = await fetch(ANILIST,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({query:q,variables:{id}})});
-  const d = await r.json();
-  return d.data?.Media;
-}
-
-/* ── cover for card (try anilist by title match, fallback placeholder) ── */
-const coverStore = {}; // id → url
-
+const coverStore = {};
 async function fetchCardCover(m) {
   if (m.cover) return m.cover;
   if (coverStore[m.id]) return coverStore[m.id];
@@ -776,9 +714,17 @@ async function fetchCardCover(m) {
   return 'none';
 }
 
-/* ═══════════════════════ LOGIC ═══════════════════════ */
+/* ═══════════════ HELPERS ═══════════════ */
+
+// Dato un manga, calcola lo stato corretto in base ai volumi
+function calcolaStato(m) {
+  if (m.volTot > 0) {
+    return (m.volHo || []).length === m.volTot ? 'Completo' : 'Incompleto';
+  }
+  return m.stato; // senza volumi totali, fidarsi del campo manuale
+}
+
 function getMancanti(m) {
-  // If we know total volumes, compute automatically
   if (m.volTot > 0) {
     const haveSet = new Set((m.volHo||[]).map(Number));
     const missing = [];
@@ -787,89 +733,81 @@ function getMancanti(m) {
     }
     return missing;
   }
-  // Fallback: use stored mancanti string
   if (!m.mancanti) return [];
   return m.mancanti.split(',').map(s=>s.trim()).filter(Boolean);
 }
 
-function getHave(m) {
-  if (m.volTot > 0) return m.volHo || [];
-  // Infer: all vols except mancanti (we don't know total, so return empty)
-  return m.volHo || [];
-}
-
-/* ═══════════════════════ RENDER ═══════════════════════ */
+/* ═══════════════ RENDER ═══════════════ */
 function getFiltered() {
   let d = [...manga];
-  if (filter === 'Completo') d = d.filter(m => m.stato==='Completo');
-  else if (filter === 'Incompleto') d = d.filter(m => m.stato==='Incompleto');
-  else if (filter === 'speciali') d = d.filter(m => m.speciali==='Mancante' && !m.specialePresente);
-  if (query) { const q=query.toLowerCase(); d=d.filter(m=>m.titolo.toLowerCase().includes(q)); }
-  return d.sort((a,b)=>a.titolo.localeCompare(b.titolo));
+  if (filter === 'Completo') d = d.filter(m => calcolaStato(m) === 'Completo');
+  else if (filter === 'Incompleto') d = d.filter(m => calcolaStato(m) === 'Incompleto');
+  else if (filter === 'speciali') d = d.filter(m => m.speciali === 'Mancante' && !m.specialePresente);
+  if (query) { const q = query.toLowerCase(); d = d.filter(m => m.titolo.toLowerCase().includes(q)); }
+  return d.sort((a,b) => a.titolo.localeCompare(b.titolo));
 }
 
 function renderStats() {
   const tot = manga.length;
-  const comp = manga.filter(m=>m.stato==='Completo').length;
-  const inc = manga.filter(m=>m.stato==='Incompleto').length;
-  const specMiss = manga.filter(m=>m.speciali==='Mancante'&&!m.specialePresente).length;
-  document.getElementById('hStats').innerHTML=`
+  const comp = manga.filter(m => calcolaStato(m) === 'Completo').length;
+  const inc = manga.filter(m => calcolaStato(m) === 'Incompleto').length;
+  const specMiss = manga.filter(m => m.speciali === 'Mancante' && !m.specialePresente).length;
+  document.getElementById('hStats').innerHTML = `
     <div class="hstat"><div class="hstat-num y">${tot}</div>TITOLI</div>
     <div class="hstat"><div class="hstat-num g">${comp}</div>COMPLET</div>
     <div class="hstat"><div class="hstat-num p">${inc}</div>INCOMPL</div>
     <div class="hstat"><div class="hstat-num o">${specMiss}</div>LIMITED</div>
   `;
-  document.getElementById('mqText').textContent = manga.map(m=>m.titolo).join(' ★ ') + ' ★ CLICCA I VOLUMI PER GESTIRE LA COLLEZIONE ★';
+  document.getElementById('mqText').textContent = manga.map(m => m.titolo).join(' ★ ') + ' ★ CLICCA I VOLUMI PER GESTIRE LA COLLEZIONE ★';
 }
 
-function phClass(id){ return 'ph'+(id%8); }
+function phClass(id) { return 'ph' + (id % 8); }
 
 function buildCard(m, idx) {
+  const statoReale = calcolaStato(m);
   const mancanti = getMancanti(m);
   const haveSet = new Set((m.volHo||[]).map(Number));
   const haveCount = m.volTot > 0 ? haveSet.size : 0;
-  const pct = m.volTot > 0 ? Math.round(haveCount/m.volTot*100) : 0;
+  const pct = m.volTot > 0 ? Math.round(haveCount / m.volTot * 100) : 0;
+  const allDone = m.volTot > 0 && haveCount === m.volTot;
 
-  // Volumes section
   let volsHtml = '';
   if (m.volTot > 0) {
-    const allDone = haveCount === m.volTot;
     const pills = [];
     for (let i = 1; i <= m.volTot; i++) {
-      const have = haveSet.has(i);
-      const cls = allDone ? 'gold' : (have ? 'have' : 'need');
+      const cls = allDone ? 'gold' : (haveSet.has(i) ? 'have' : 'need');
       pills.push(`<span class="vpill ${cls}" onclick="toggleVolCard(${m.id},${i})" title="Vol.${i}">${i}</span>`);
     }
     volsHtml = `
       <div class="section-lbl">${allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)'}</div>
       <div class="vol-grid">${pills.join('')}</div>
-      <div class="prog-wrap"><div class="prog-fill${allDone?' gold':''}" id="pf-${m.id}" style="width:${pct}%"></div></div>
-      <div class="prog-lbl" id="pl-${m.id}" style="${allDone?'color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.5)':''}">${allDone?'★ '+haveCount+'/'+m.volTot+' COMPLETO! ★':haveCount+'/'+m.volTot+' in collezione'}</div>
+      <div class="prog-wrap"><div class="prog-fill${allDone ? ' gold' : ''}" id="pf-${m.id}" style="width:${pct}%"></div></div>
+      <div class="prog-lbl" id="pl-${m.id}" style="${allDone ? 'color:var(--yellow);text-shadow:0 0 6px rgba(255,230,0,0.5)' : ''}">${allDone ? '★ ' + haveCount + '/' + m.volTot + ' COMPLETO! ★' : haveCount + '/' + m.volTot + ' in collezione'}</div>
     `;
   } else if (mancanti.length > 0) {
     volsHtml = `
       <div class="section-lbl">MANCANTI</div>
-      <div class="vol-grid">${mancanti.map(v=>`<span class="vpill need">${v}</span>`).join('')}</div>
+      <div class="vol-grid">${mancanti.map(v => `<span class="vpill need">${v}</span>`).join('')}</div>
       <div class="prog-lbl" style="color:#444">Sincronizza per i totali ↗</div>
     `;
-  } else if (m.stato === 'Incompleto') {
+  } else if (statoReale === 'Incompleto') {
     volsHtml = `<div class="prog-lbl" style="color:#444;margin-top:0.3rem">Usa ✏ per indicare i volumi</div>`;
   }
 
   const specHtml = m.speciali === 'Mancante' || m.speciali === 'Presente' ? `
     <div class="section-lbl" style="margin-top:0.3rem">EDIZIONE LIMITED / VARIANT</div>
-    <span class="spec-pill ${m.specialePresente?'have':''}" onclick="toggleSpec(${m.id})">
+    <span class="spec-pill ${m.specialePresente ? 'have' : ''}" onclick="toggleSpec(${m.id})">
       ★ LIMITED ${m.specialePresente ? '✓ HO' : '✗ MANCA'}
     </span>
   ` : '';
 
   return `
-    <div class="card ${m.stato.toLowerCase()}" style="animation-delay:${Math.min(idx*0.035,0.5)}s">
+    <div class="card ${statoReale.toLowerCase()}" style="animation-delay:${Math.min(idx*0.035,0.5)}s">
       <div class="card-cover">
         <div class="cover-ph ${phClass(m.id)}" id="ph-${m.id}">${m.titolo}</div>
         <img id="img-${m.id}" src="" alt="${m.titolo}" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
         <div class="cover-loading" id="cl-${m.id}">LOAD...</div>
-        <span class="badge-stato ${m.stato==='Completo'?'bs-c':'bs-i'}">${m.stato==='Completo'?'✓ OK':'✗ WIP'}</span>
+        <span class="badge-stato ${statoReale === 'Completo' ? 'bs-c' : 'bs-i'}" id="badge-${m.id}">${statoReale === 'Completo' ? '✓ OK' : '✗ WIP'}</span>
       </div>
       <div class="card-body">
         <div class="card-title">${m.titolo}</div>
@@ -896,9 +834,8 @@ async function renderGrid() {
     return;
   }
 
-  grid.innerHTML = data.map((m,i) => buildCard(m,i)).join('');
+  grid.innerHTML = data.map((m, i) => buildCard(m, i)).join('');
 
-  // async cover loading
   data.forEach(async m => {
     const clEl = document.getElementById(`cl-${m.id}`);
     const imgEl = document.getElementById(`img-${m.id}`);
@@ -912,38 +849,50 @@ async function renderGrid() {
         if (imgEl) { imgEl.src = url; imgEl.style.display = 'block'; }
         if (phEl)  phEl.style.display = 'none';
       };
-      tmp.onerror = () => { if (clEl) clEl.style.display='none'; };
       tmp.src = url;
     }
   });
 }
 
-/* ═══════════════════════ INTERACTIONS ═══════════════════════ */
+/* ═══════════════ INTERACTIONS ═══════════════ */
 function toggleVolCard(id, vol) {
-  const m = manga.find(x=>x.id===id);
+  const m = manga.find(x => x.id === id);
   if (!m) return;
   const set = new Set((m.volHo||[]).map(Number));
   if (set.has(vol)) set.delete(vol); else set.add(vol);
-  m.volHo = [...set].sort((a,b)=>a-b);
+  m.volHo = [...set].sort((a,b) => a - b);
+
+  // Aggiorna stato automaticamente in base ai volumi
+  if (m.volTot > 0) {
+    m.stato = set.size === m.volTot ? 'Completo' : 'Incompleto';
+  }
+
   save();
 
   const allDone = m.volTot > 0 && set.size === m.volTot;
+  const card = document.getElementById(`badge-${id}`)?.closest('.card');
 
-  // update all pills to gold/have/need
-  const card = document.querySelector(`#pf-${id}`)?.closest('.card');
   if (card) {
+    // Aggiorna tutte le pillole
     card.querySelectorAll('.vpill').forEach((pill, idx) => {
       const n = idx + 1;
       pill.className = 'vpill ' + (allDone ? 'gold' : (set.has(n) ? 'have' : 'need'));
     });
+    // Aggiorna badge stato
+    const badge = document.getElementById(`badge-${id}`);
+    if (badge) {
+      badge.className = 'badge-stato ' + (allDone ? 'bs-c' : 'bs-i');
+      badge.textContent = allDone ? '✓ OK' : '✗ WIP';
+    }
+    // Aggiorna classe card
+    card.className = 'card ' + (allDone ? 'completo' : 'incompleto');
+    // Aggiorna label sezione
+    const lbl = card.querySelector('.section-lbl');
+    if (lbl) lbl.textContent = allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)';
   }
 
-  // update label
-  const lbl = card?.querySelector('.section-lbl');
-  if (lbl) lbl.textContent = allDone ? '★ COLLEZIONE COMPLETA ★' : 'VOLUMI (verde=ho, rosa=manca)';
-
-  // update progress bar
-  const pct = Math.round(set.size / m.volTot * 100);
+  // Aggiorna barra e label progresso
+  const pct = m.volTot > 0 ? Math.round(set.size / m.volTot * 100) : 0;
   const pf = document.getElementById(`pf-${id}`);
   const pl = document.getElementById(`pl-${id}`);
   if (pf) { pf.style.width = pct + '%'; pf.classList.toggle('gold', allDone); }
@@ -958,7 +907,7 @@ function toggleVolCard(id, vol) {
 }
 
 function toggleSpec(id) {
-  const m = manga.find(x=>x.id===id);
+  const m = manga.find(x => x.id === id);
   if (!m) return;
   m.specialePresente = !m.specialePresente;
   save();
@@ -971,9 +920,8 @@ function toggleSpec(id) {
   renderStats();
 }
 
-/* ── Sync one manga with AniList ── */
 async function syncOne(id) {
-  const m = manga.find(x=>x.id===id);
+  const m = manga.find(x => x.id === id);
   if (!m) return;
   showLoad(`SINCRONIZZO "${m.titolo}"...`);
   try {
@@ -985,6 +933,8 @@ async function syncOne(id) {
         m.cover = r.coverImage.large;
         coverStore[id] = r.coverImage.large;
       }
+      // Ricalcola stato dopo sync
+      m.stato = calcolaStato(m);
       save();
       hideLoad();
       toast(`✓ ${m.titolo} — ${m.volTot > 0 ? m.volTot + ' vol.' : 'nessun dato volumi'}`);
@@ -999,7 +949,6 @@ async function syncOne(id) {
   }
 }
 
-/* ── Sync ALL ── */
 async function syncAll() {
   showLoad('SINCRONIZZAZIONE DI TUTTA LA COLLEZIONE...\nPOTREBBE RICHIEDERE 1-2 MINUTI');
   let done = 0;
@@ -1010,11 +959,12 @@ async function syncAll() {
         const r = results[0];
         if (r.volumes && m.volTot === 0) m.volTot = r.volumes;
         if (r.coverImage?.large && !m.cover) m.cover = r.coverImage.large;
+        m.stato = calcolaStato(m);
       }
       done++;
       document.getElementById('loadMsg').textContent = `SINCRONIZZAZIONE...\n${done}/${manga.length} TITOLI`;
-      await new Promise(r=>setTimeout(r,350)); // rate limit
-    } catch(e){}
+      await new Promise(r => setTimeout(r, 350));
+    } catch(e) {}
   }
   save();
   hideLoad();
@@ -1022,7 +972,7 @@ async function syncAll() {
   renderGrid();
 }
 
-/* ═══════════════════════ MODAL ═══════════════════════ */
+/* ═══════════════ MODAL ═══════════════ */
 let moVolHo = [];
 let moVolTot = 0;
 
@@ -1033,6 +983,7 @@ function openAdd() {
   document.getElementById('moTitle').textContent = 'NUOVO MANGA';
   document.getElementById('mTitolo').value = '';
   document.getElementById('mEdizione').value = '';
+  document.getElementById('mStato').value = 'Incompleto';
   document.getElementById('mTotVol').value = '';
   document.getElementById('mSpec').value = '';
   document.getElementById('mCover').value = '';
@@ -1047,13 +998,14 @@ function openAdd() {
 
 function openEdit(id) {
   editId = id;
-  const m = manga.find(x=>x.id===id);
-  moVolHo = [...(m.volHo||[])];
+  const m = manga.find(x => x.id === id);
+  moVolHo = [...(m.volHo || [])];
   moVolTot = m.volTot || 0;
   document.getElementById('moTitle').textContent = 'MODIFICA';
   document.getElementById('mTitolo').value = m.titolo;
   document.getElementById('mEdizione').value = m.edizione || '';
-  document.getElementById('mStato').value = m.stato;
+  // Mostra stato reale calcolato, non quello salvato
+  document.getElementById('mStato').value = calcolaStato(m);
   document.getElementById('mTotVol').value = m.volTot || '';
   document.getElementById('mSpec').value = m.speciali || '';
   document.getElementById('mCover').value = m.cover || '';
@@ -1082,8 +1034,6 @@ document.getElementById('mStato').addEventListener('change', e => {
   if (e.target.value === 'Completo' && moVolTot > 0) {
     moVolHo = Array.from({length: moVolTot}, (_, i) => i + 1);
     renderVolPicker(moVolTot, moVolHo);
-  } else if (e.target.value === 'Incompleto') {
-    // non tocca i volumi già selezionati
   }
 });
 
@@ -1099,7 +1049,7 @@ function renderVolPicker(tot, have) {
   const haveSet = new Set(have.map(Number));
   let html = '';
   for (let i = 1; i <= tot; i++) {
-    html += `<span class="ve-pill ${haveSet.has(i)?'have':''}" onclick="toggleVePill(${i})">${i}</span>`;
+    html += `<span class="ve-pill ${haveSet.has(i) ? 'have' : ''}" onclick="toggleVePill(${i})">${i}</span>`;
   }
   container.innerHTML = html;
 }
@@ -1107,7 +1057,7 @@ function renderVolPicker(tot, have) {
 function toggleVePill(n) {
   const set = new Set(moVolHo.map(Number));
   if (set.has(n)) set.delete(n); else set.add(n);
-  moVolHo = [...set].sort((a,b)=>a-b);
+  moVolHo = [...set].sort((a,b) => a - b);
   const pill = document.querySelector(`.ve-pill[onclick="toggleVePill(${n})"]`);
   if (pill) pill.classList.toggle('have', set.has(n));
 }
@@ -1116,18 +1066,30 @@ function saveMo() {
   const titolo = document.getElementById('mTitolo').value.trim();
   if (!titolo) { toast('⚠ Inserisci un titolo!', true); return; }
   const edizione = document.getElementById('mEdizione').value.trim();
-  const volTot = parseInt(document.getElementById('mTotVol').value)||0;
+  const volTot = parseInt(document.getElementById('mTotVol').value) || 0;
   const spec = document.getElementById('mSpec').value;
   const cover = document.getElementById('mCover').value.trim();
-  const stato = document.getElementById('mStato').value;
 
-  // Compute mancanti from picker
   const haveSet = new Set(moVolHo.map(Number));
+
+  // Se Completo e volumi totali noti ma picker vuoto → segna tutti
+  if (document.getElementById('mStato').value === 'Completo' && volTot > 0 && haveSet.size === 0) {
+    moVolHo = Array.from({length: volTot}, (_, i) => i + 1);
+  }
+
   const mancanti = [];
-  for (let i=1;i<=volTot;i++) if (!haveSet.has(i)) mancanti.push(String(i));
+  for (let i = 1; i <= volTot; i++) if (!haveSet.has(i)) mancanti.push(String(i));
+
+  // Calcola stato reale dai volumi
+  let stato;
+  if (volTot > 0) {
+    stato = moVolHo.length === volTot ? 'Completo' : 'Incompleto';
+  } else {
+    stato = document.getElementById('mStato').value;
+  }
 
   if (editId !== null) {
-    const m = manga.find(x=>x.id===editId);
+    const m = manga.find(x => x.id === editId);
     m.titolo = titolo; m.edizione = edizione; m.stato = stato; m.volTot = volTot;
     m.volHo = moVolHo; m.mancanti = mancanti.join(',');
     m.speciali = spec; m.cover = cover;
@@ -1146,11 +1108,10 @@ function saveMo() {
 
 function delMo() {
   if (!confirm('Eliminare?')) return;
-  manga = manga.filter(x=>x.id!==editId);
+  manga = manga.filter(x => x.id !== editId);
   save(); closeMo(); renderGrid(); toast('🗑 Eliminato');
 }
 
-/* ── AniList search in modal ── */
 async function doAniSearch() {
   const q = document.getElementById('moSearch').value.trim();
   if (!q) return;
@@ -1184,7 +1145,14 @@ function selectAniResult(aniId, encTitle, encImg, vols) {
   const title = decodeURIComponent(encTitle);
   const img = decodeURIComponent(encImg);
   document.getElementById('mTitolo').value = title;
-  if (vols) { document.getElementById('mTotVol').value = vols; moVolTot = vols; renderVolPicker(vols, moVolHo); }
+  if (vols) {
+    document.getElementById('mTotVol').value = vols;
+    moVolTot = vols;
+    if (document.getElementById('mStato').value === 'Completo') {
+      moVolHo = Array.from({length: vols}, (_, i) => i + 1);
+    }
+    renderVolPicker(vols, moVolHo);
+  }
   if (img) document.getElementById('mCover').value = img;
   document.getElementById('moResults').innerHTML = `<div style="color:var(--green);font-family:VT323,monospace;font-size:1rem;padding:0.3rem">✓ Selezionato: ${title}</div>`;
 }
@@ -1197,35 +1165,31 @@ document.getElementById('moSearch').addEventListener('input', e => {
   document.getElementById('moResults').innerHTML = `<div style="color:#555;font-family:'VT323',monospace;font-size:1rem;padding:0.3rem;animation:blink 1s infinite">CERCANDO...</div>`;
   _sTimer = setTimeout(() => doAniSearch(), 500);
 });
-document.getElementById('moSearch').addEventListener('keydown', e => { if (e.key==='Enter') { clearTimeout(_sTimer); doAniSearch(); } });
-document.getElementById('mo').addEventListener('click', e => { if (e.target===document.getElementById('mo')) closeMo(); });
+document.getElementById('moSearch').addEventListener('keydown', e => { if (e.key === 'Enter') { clearTimeout(_sTimer); doAniSearch(); } });
+document.getElementById('mo').addEventListener('click', e => { if (e.target === document.getElementById('mo')) closeMo(); });
 
-/* ── filters ── */
 function setFilter(btn, f) {
   filter = f;
-  document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.rbtn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderGrid();
 }
-document.getElementById('searchInput').addEventListener('input', e => { query=e.target.value; renderGrid(); });
+document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value; renderGrid(); });
 
-/* ── toast ── */
 let tTimer;
-function toast(msg, err=false) {
+function toast(msg, err = false) {
   const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast'+(err?' err':'')+' show';
-  clearTimeout(tTimer); tTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+  t.textContent = msg; t.className = 'toast' + (err ? ' err' : '') + ' show';
+  clearTimeout(tTimer); tTimer = setTimeout(() => t.classList.remove('show'), 2200);
 }
 
-/* ── loading ── */
 function showLoad(msg) {
-  document.getElementById('loadMsg').innerHTML = msg.replace(/\n/g,'<br>');
+  document.getElementById('loadMsg').innerHTML = msg.replace(/\n/g, '<br>');
   document.getElementById('loadOv').classList.add('open');
 }
 function hideLoad() { document.getElementById('loadOv').classList.remove('open'); }
 
-/* ── INIT ── */
-// Add sync-all button after controls
+/* ═══════════════ INIT ═══════════════ */
 const ctrlDiv = document.querySelector('.controls');
 const syncAllBtn = document.createElement('button');
 syncAllBtn.className = 'rbtn';
@@ -1235,10 +1199,8 @@ syncAllBtn.title = 'Scarica volumi totali e copertine da AniList per tutti i man
 syncAllBtn.onclick = syncAll;
 ctrlDiv.appendChild(syncAllBtn);
 
-// Avvia connessione Firebase
 initFirebase();
 
-// Esponi le funzioni al contesto globale (necessario con type="module")
 window.setFilter = setFilter;
 window.openAdd = openAdd;
 window.openEdit = openEdit;
@@ -1252,7 +1214,6 @@ window.toggleSpec = toggleSpec;
 window.toggleVePill = toggleVePill;
 window.syncOne = syncOne;
 window.syncAll = syncAll;
-
 </script>
 </body>
 </html>
